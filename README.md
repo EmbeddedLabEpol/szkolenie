@@ -1,1 +1,1 @@
-# szkolenie
+# szkolenie  - juz gra ma dzialac!
