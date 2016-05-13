@@ -2,6 +2,7 @@
 #include <iostream>
 int main()
 {
+//sss
 	struct WH {
 		const int H=600;
 		const int W=800;
