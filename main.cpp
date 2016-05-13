@@ -21,6 +21,9 @@ int main()
 	double cX = 200;
 	double cY = 200;
 	
+	int r1X = rand() % WIDTH;
+	int r1Y = rand() % HEIGHT;
+	 
 	
 	sf::Clock clock; // starts the clock
 	sf::Time elapsed = clock.getElapsedTime();
@@ -36,6 +39,8 @@ int main()
 		// error...
 	}
 	
+	
+	
 	//rectangle.setTexture(texture);
 	sf::Sprite rectangle;
 	//sf::RectangleShape rectangle(sf::Vector2f(rectW, rectH));
@@ -46,7 +51,7 @@ int main()
 	
 	sf::Sprite rectangle1;
 	//sf::RectangleShape rectangle(sf::Vector2f(rectW, rectH));
-	rectangle1.setPosition(rand() % WIDTH, rand() % HEIGHT);
+	rectangle1.setPosition(r1X, r1Y);
 	rectangle1.setOrigin(rectW/4,rectH/4);
 	rectangle1.setTexture(texture);
 	rectangle1.setTextureRect(sf::IntRect(rectW/2, rectW/2, rectH/2, rectH/2));
@@ -120,7 +125,7 @@ int main()
 		
         
 		// clear the window with black color
-        window.clear(sf::Color::Blue);
+        window.clear(sf::Color::Yellow);
 		
 
 		elapsed = clock.getElapsedTime();
