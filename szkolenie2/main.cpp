@@ -30,7 +30,7 @@ int main()
 	//rectangle.setFillColor(sf::Color(100, 250, 50));
 	
 	sf::Texture texture;
-	if (!texture.loadFromFile("/home/cpptamed/CppProjects/Arcanoid/ruda.png"))
+	if (!texture.loadFromFile("./ruda.png"))
 	{
 		// error...
 	}
@@ -50,7 +50,7 @@ int main()
 	
 	sf::Font font;
 	sf::Text text;
-	font.loadFromFile("/home/cpptamed/CppProjects/Arcanoid/arial.ttf");
+	font.loadFromFile("./arial.ttf");
 	text.setFont(font); // font is a sf::Font
 	text.setString("!!! Breakin news !!!");
 	text.setCharacterSize(24); // in pixels, not points!
