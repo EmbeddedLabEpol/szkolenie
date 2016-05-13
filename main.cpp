@@ -3,6 +3,7 @@
 int main()
 {
 //sss
+// dd
 	struct WH {
 		const int H=600;
 		const int W=800;
