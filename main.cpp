@@ -2,7 +2,7 @@
 #include <iostream>
 int main()
 {
-//sss
+//ssssdasdasd
 	struct WH {
 		const int H=600;
 		const int W=800;
