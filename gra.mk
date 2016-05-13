@@ -2,12 +2,12 @@
 ## Auto Generated makefile by CodeLite IDE
 ## any manual changes will be erased      
 ##
-## Debug
+## Release
 ProjectName            :=gra
-ConfigurationName      :=Debug
-WorkspacePath          := "/home/cpptamed/CppProjects/szkolenie"
-ProjectPath            := "/home/cpptamed/CppProjects/szkolenie/gra"
-IntermediateDirectory  :=./Debug
+ConfigurationName      :=Release
+WorkspacePath          := "/home/cpptamed/CppProjects"
+ProjectPath            := "/home/cpptamed/CppProjects/szkolenie"
+IntermediateDirectory  :=./Release
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
@@ -28,7 +28,7 @@ LibraryPathSwitch      :=-L
 PreprocessorSwitch     :=-D
 SourceSwitch           :=-c 
 OutputFile             :=$(IntermediateDirectory)/$(ProjectName)
-Preprocessors          :=
+Preprocessors          :=$(PreprocessorSwitch)NDEBUG 
 ObjectSwitch           :=-o 
 ArchiveOutputSwitch    := 
 PreprocessOnlySwitch   :=-E
@@ -50,8 +50,8 @@ LibPath                := $(LibraryPathSwitch).
 AR       := /usr/bin/ar rcu
 CXX      := /usr/bin/g++-4.9 
 CC       := /usr/bin/gcc-4.9 
-CXXFLAGS :=  -g -O0 -ansi -pedantic -std=c++11 -Wall $(Preprocessors)
-CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
+CXXFLAGS :=  -O2 -ansi -pedantic -std=c++11 -Wall $(Preprocessors)
+CFLAGS   :=  -O2 -Wall $(Preprocessors)
 ASFLAGS  := 
 AS       := /usr/bin/as 
 
@@ -79,7 +79,7 @@ $(OutputFile): $(IntermediateDirectory)/.d $(Objects)
 	$(LinkerName) $(OutputSwitch)$(OutputFile) @$(ObjectsFileList) $(LibPath) $(Libs) $(LinkOptions)
 
 $(IntermediateDirectory)/.d:
-	@test -d ./Debug || $(MakeDirCommand) ./Debug
+	@test -d ./Release || $(MakeDirCommand) ./Release
 
 PreBuild:
 
@@ -88,7 +88,7 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/cpptamed/CppProjects/szkolenie/gra/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/cpptamed/CppProjects/szkolenie/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM "main.cpp"
 
@@ -101,9 +101,9 @@ $(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
 ## Clean
 ##
 clean:
-	$(RM) ./Debug/*$(ObjectSuffix)
-	$(RM) ./Debug/*$(DependSuffix)
+	$(RM) ./Release/*$(ObjectSuffix)
+	$(RM) ./Release/*$(DependSuffix)
 	$(RM) $(OutputFile)
-	$(RM) "../.build-debug/gra"
+	$(RM) "../.build-release/gra"
 
 
