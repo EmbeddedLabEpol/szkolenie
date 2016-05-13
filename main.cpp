@@ -14,7 +14,7 @@ int tY = 550;
 int main()
 {
     // create the window
-    sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "My window");
+    sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Arcanoid - nasza wypas wersja 1.0");
 	int angle = 0;
 	int rot = -1;
 	int speed = 10;
