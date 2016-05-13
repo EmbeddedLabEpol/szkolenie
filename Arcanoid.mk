@@ -5,8 +5,8 @@
 ## Release
 ProjectName            :=Arcanoid
 ConfigurationName      :=Release
-WorkspacePath          := "/home/cpptamed/CppProjects/szkolenie"
-ProjectPath            := "/home/cpptamed/CppProjects/szkolenie/gra/szkolenie2"
+WorkspacePath          := "/home/cpptamed/CppProjects/dfds"
+ProjectPath            := "/home/cpptamed/CppProjects/szkolenie"
 IntermediateDirectory  :=./Release
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
@@ -88,7 +88,7 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/cpptamed/CppProjects/szkolenie/gra/szkolenie2/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/cpptamed/CppProjects/szkolenie/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM "main.cpp"
 
@@ -104,6 +104,6 @@ clean:
 	$(RM) ./Release/*$(ObjectSuffix)
 	$(RM) ./Release/*$(DependSuffix)
 	$(RM) $(OutputFile)
-	$(RM) "../../.build-release/Arcanoid"
+	$(RM) "../dfds/.build-release/Arcanoid"
 
 

@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <cstdlib>
 
 const int WIDTH = 800;
 const int HEIGHT = 600;
@@ -42,6 +43,19 @@ int main()
 	rectangle.setOrigin(rectW/2,rectH/2);
 	rectangle.setTexture(texture);
 	rectangle.setTextureRect(sf::IntRect(rectW, rectW, rectH, rectH));
+	
+	sf::Sprite rectangle1;
+	//sf::RectangleShape rectangle(sf::Vector2f(rectW, rectH));
+	rectangle1.setPosition(rand() % WIDTH, rand() % HEIGHT);
+	rectangle1.setOrigin(rectW/4,rectH/4);
+	rectangle1.setTexture(texture);
+	rectangle1.setTextureRect(sf::IntRect(rectW/2, rectW/2, rectH/2, rectH/2));
+	sf::Sprite rectangle2;
+	//sf::RectangleShape rectangle(sf::Vector2f(rectW, rectH));
+	rectangle2.setPosition(rand() % WIDTH, rand() % HEIGHT);
+	rectangle2.setOrigin(rectW/4,rectH/4);
+	rectangle2.setTexture(texture);
+	rectangle2.setTextureRect(sf::IntRect(rectW/2, rectW/2, rectH/2, rectH/2));
 	
 	sf::CircleShape circle(50);
 	circle.setPosition(cX,cY);
@@ -130,6 +144,8 @@ int main()
 		
 		//window.draw(sprite);
 		window.draw(rectangle);
+		window.draw(rectangle1);
+		window.draw(rectangle2);
 		window.draw(circle);
 		window.draw(text);	
 		window.display();
