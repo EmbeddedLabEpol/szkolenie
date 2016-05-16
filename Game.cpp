@@ -53,7 +53,7 @@ int Game::run()
 		}
 
 		
-		b.draw(window);
+		//b.draw(window);
 		
 		window.display();
 
