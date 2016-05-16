@@ -10,6 +10,8 @@ public:
 	~Block();
 	
 	bool is_colision(float, float, float);
+	float get_size_x();
+	float get_size_y();
 
 	sf::RectangleShape block;
 	bool state;
