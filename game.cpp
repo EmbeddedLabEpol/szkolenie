@@ -1,4 +1,6 @@
 #include "game.h"
+#include "Ball.h"
+
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <cstdlib>
