@@ -17,7 +17,7 @@ int Game::run()
 {
 	
 	Block b;
-	
+	Ball ball{20};
 	// create the window
 	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Arcanoid - nasza wypas wersja 1.0");
 
@@ -30,8 +30,8 @@ int Game::run()
 		sf::Event event;
 		while (window.pollEvent(event)) {
 			if (event.type == sf::Event::MouseMoved) {
-				std::cout << "new mouse x: " << event.mouseMove.x << std::endl;
-				std::cout << "new mouse y: " << event.mouseMove.y << std::endl;
+				//std::cout << "new mouse x: " << event.mouseMove.x << std::endl;
+				//std::cout << "new mouse y: " << event.mouseMove.y << std::endl;
 			}
 
 			// "close requested" event: we close the window
@@ -52,8 +52,24 @@ int Game::run()
 			clock.restart();
 		}
 
+		sf::Sprite rectangle;
+		//sf::RectangleShape rectangle(sf::Vector2f(rectW, rectH));
+		rectangle.setPosition(200,200);
 		
+		sf::Texture texture;
+		if (!texture.loadFromFile("../ruda.png"))
+	{
+		// error...
+	}		
+		
+		rectangle.setTexture(texture);
+		rectangle.setTextureRect(sf::IntRect(0, 0, 111, 111));
+		
+		
+		window.draw(rectangle);
 		b.draw(window);
+		//ball.color();
+		window.draw(ball);
 		
 		window.display();
 

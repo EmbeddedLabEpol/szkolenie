@@ -8,7 +8,7 @@ class Ball : public sf::CircleShape
 public:
 	Ball(int i);
 	~Ball();
-	
+	void color();
 	 
 
 };
