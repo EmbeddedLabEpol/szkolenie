@@ -1,12 +1,14 @@
 #ifndef Game_H
 #define Game_H
-
+#include <vector>
+#include <Block.h>
 class Game
 {
 public:
 	Game();
 	~Game();
 	int run();
+	void generateBlocksFields(std::vector<Block>&, int, int);
 private:
 	const int WIDTH  = 1024;
 	const int HEIGHT =  768;

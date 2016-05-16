@@ -2,6 +2,7 @@
 #include "Ball.h"
 #include "Block.h"
 #include "Menu.h"
+#include <vector>
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <cstdlib>
@@ -12,14 +13,21 @@ Game::Game()
 Game::~Game()
 {
 }
+void Game::generateBlocksFields(std::vector<Block>& blocks, int rows, int cols){
+
+    for(int x = 0; x < rows; ++x)
+      for(int y= 0; y < cols; ++y)
+			blocks.emplace_back(x*60+5, y*40+5);
+}
 
 int Game::run()
 {
 	
-	Block b;
-	Menu menu(WIDTH,HEIGHT);
- 
-	// create the window
+	//Block block;
+	std::vector<Block> blocks;
+	generateBlocksFields(blocks, 5 , 5);
+	Menu menu(WIDTH,HEIGHT);	
+// create the window
 	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Arcanoid - nasza wypas wersja 1.0");
 
 	sf::Clock clock; // starts the clock
@@ -53,8 +61,9 @@ int Game::run()
 			clock.restart();
 		}
 
+		for(auto& block : blocks) window.draw(block.block);
+		//window.draw(block.block);
 		
-        
 		window.draw(b.block);
     
 		menu.draw_menu(window);
