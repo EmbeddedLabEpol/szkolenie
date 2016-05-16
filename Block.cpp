@@ -57,3 +57,22 @@ bool Block::is_colision(float xc, float yc, float r)
 	else
 		return false;
 }
+
+
+for (unsigned int i = 0; i < m; i++)
+	matrix(n, i).state = true;
+	
+void set_state(matrix, int row, int column)
+{
+	if (matrix.size1 > (row + 1))
+		matrix(row + 1, column);
+	
+	if ((row - 1) >= 0)
+		matrix(row - 1, column);
+		
+	if(matrix.size2 > (column +1))
+		matrix(row, column + 1);
+		
+	if((column - 1) > 0)
+		matrix(row, column - 1);
+}
