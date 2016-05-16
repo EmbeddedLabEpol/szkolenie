@@ -10,10 +10,10 @@ public:
 	~Block();
 	
 	void draw(sf::RenderWindow&);
+	bool is_colision(float, float, float);
 	
 private:
 	sf::RectangleShape block;
-
 };
 
 #endif // BLOCK_H
