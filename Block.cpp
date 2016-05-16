@@ -64,7 +64,7 @@ float Block::get_size_x()
 	return block.getSize().x;
 }
 
-float Block::get_sizey()
+float Block::get_size_y()
 {
 	return block.getSize().y;
 }

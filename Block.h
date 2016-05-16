@@ -11,7 +11,7 @@ public:
 	
 	bool is_colision(float, float, float);
 	float get_size_x();
-	float get_sizey();
+	float get_size_y();
 
 	sf::RectangleShape block;
 	bool state;
