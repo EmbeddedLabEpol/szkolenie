@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "Ball.h"
+#include "Block.h"
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -14,6 +15,9 @@ Game::~Game()
 
 int Game::run()
 {
+	
+	Block b{sf::Vector2f(400, 400)};
+	
 	// create the window
 	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Arcanoid - nasza wypas wersja 1.0");
 	int rectW = 300;
@@ -150,6 +154,9 @@ int Game::run()
 		window.draw(circle);
 		 
 		window.draw(text);
+		
+		b.draw(window);
+		
 		window.display();
 
 	}
