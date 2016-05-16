@@ -53,7 +53,9 @@ int Game::run()
 		}
 
 		
-		//b.draw(window);
+ 
+		window.draw(b.block);
+ 
 		
 		window.display();
 

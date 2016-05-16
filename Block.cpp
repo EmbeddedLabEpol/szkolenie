@@ -1,20 +1,20 @@
 #include "Block.h"
 #include <math.h>
 
-Block::Block(sf::Vector2f v):
-block(v)
+Block::Block(sf::Vector2f v, bool s, float x, float y):
+block(v),
+state(s)
 {
+	block.setPosition(x, y);
+	block.setFillColor(sf::Color::Blue);
+	block.setOutlineColor(sf::Color::Black);
+	block.setOutlineThickness(5);
 }
 
 Block::~Block()
 {
 }
 
-//void Block::draw(sf::RenderWindow& w)
-//{
-//	w.draw(block);
-//}
-//
 bool Block::is_colision(float xc, float yc, float r)
 {
 	const float xb = block.getPosition().x;
