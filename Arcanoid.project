@@ -38,6 +38,8 @@
     <File Name="Game.h"/>
     <File Name="Paddle.h"/>
     <File Name="Paddle.cpp"/>
+    <File Name="GameWindow.h"/>
+    <File Name="GameWindow.cpp"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>

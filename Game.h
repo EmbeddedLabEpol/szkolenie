@@ -12,6 +12,8 @@ public:
 private:
 	const int WIDTH  = 1024;
 	const int HEIGHT =  768;
+	
+	
 };
 
 #endif // Game_H
