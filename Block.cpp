@@ -6,6 +6,9 @@ block(v),
 state(s)
 {
 	block.setPosition(x, y);
+	block.setFillColor(sf::Color::Blue);
+	block.setOutlineColor(sf::Color::Black);
+	block.setOutlineThickness(5);
 }
 
 Block::~Block()
