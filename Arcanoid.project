@@ -34,6 +34,8 @@
     <File Name="game.cpp"/>
     <File Name="Ball.h"/>
     <File Name="Ball.cpp"/>
+    <File Name="Block.h"/>
+    <File Name="Block.cpp"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
