@@ -12,11 +12,14 @@ Game::Game()
 Game::~Game()
 {
 }
-void Game::generateBlocksFields(std::vector<Block>& blocks, int rows, int cols){
-
-    for(int x = 0; x < rows; ++x)
+void Game::generateBlocksFields(std::vector<Block>& blocks, int cols){
+	int blockX = 50;
+	int blockY = 30;
+	int nBlocks = WIDTH/blockX;
+	int startPrint = (WIDTH-(nBlocks*blockX))/2;
+    for(int x = 0; x < nBlocks; ++x)
       for(int y= 0; y < cols; ++y)
-			blocks.emplace_back(x*60+5, y*40+5);
+			blocks.emplace_back(startPrint+(x*blockX), 5+(y*blockY));
 }
 
 int Game::run()
@@ -24,7 +27,7 @@ int Game::run()
 	
 	//Block block;
 	std::vector<Block> blocks;
-	generateBlocksFields(blocks, 5 , 5);
+	generateBlocksFields(blocks, 5);
 	// create the window
 	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Arcanoid - nasza wypas wersja 1.0");
 
