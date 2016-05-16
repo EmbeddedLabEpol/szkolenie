@@ -3,13 +3,13 @@
 
 #include <SFML/Graphics.hpp>
 
-class Block
+class Block : public sf::RectangleShape
 {
 public:
 	Block(sf::Vector2f = sf::Vector2f(50, 50));
 	~Block();
 	
-	void draw(sf::RenderWindow&);
+	//void draw(sf::RenderWindow&);
 	bool is_colision(float, float, float);
 	
 private:

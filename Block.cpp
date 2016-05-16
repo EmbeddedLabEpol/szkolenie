@@ -10,11 +10,11 @@ Block::~Block()
 {
 }
 
-void Block::draw(sf::RenderWindow& w)
-{
-	w.draw(block);
-}
-
+//void Block::draw(sf::RenderWindow& w)
+//{
+//	w.draw(block);
+//}
+//
 bool Block::is_colision(float xc, float yc, float r)
 {
 	const float xb = block.getPosition().x;
