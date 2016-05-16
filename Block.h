@@ -6,7 +6,7 @@
 class Block
 {
 public:
-	Block(sf::Vector2f);
+	Block(sf::Vector2f = sf::Vector2f(50, 50));
 	~Block();
 	
 	void draw(sf::RenderWindow&);

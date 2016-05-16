@@ -16,7 +16,7 @@ Game::~Game()
 int Game::run()
 {
 	
-	Block b{sf::Vector2f(400, 400)};
+	Block b;
 	
 	// create the window
 	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Arcanoid - nasza wypas wersja 1.0");
