@@ -1,9 +1,9 @@
 #include "Block.h"
 #include <math.h>
 
-Block::Block(sf::Vector2f v, bool s, float x, float y):
-block(v),
-state(s)
+Block::Block(float x, float y):
+block(sf::Vector2f(40, 20)),
+state(false)
 {
 	block.setPosition(x, y);
 	block.setFillColor(sf::Color::Blue);
