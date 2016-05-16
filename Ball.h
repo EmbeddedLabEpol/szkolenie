@@ -13,6 +13,8 @@ class Ball : public sf::CircleShape
 	void speedUp();
 	void slowDown();
 	void bounce(int _directionX, int _directionY);
+	void checkColision(sf::RectangleShape);
+	
 	
 private:
 	double speed;
