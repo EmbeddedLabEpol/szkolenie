@@ -57,3 +57,14 @@ bool Block::is_colision(float xc, float yc, float r)
 	else
 		return false;
 }
+
+
+float Block::get_size_x()
+{
+	return block.getSize().x;
+}
+
+float Block::get_sizey()
+{
+	return block.getSize().y;
+}
