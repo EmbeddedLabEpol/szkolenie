@@ -1,18 +1,18 @@
-#include "game.h"
+#include "Game.h"
 #include "Ball.h"
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <cstdlib>
-game::game()
+Game::Game()
 {
 }
 
-game::~game()
+Game::~Game()
 {
 }
 
-int game::main()
+int Game::run()
 {
 	// create the window
 	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Arcanoid - nasza wypas wersja 1.0");
@@ -148,7 +148,7 @@ int game::main()
 		window.draw(rectangle1);
 		window.draw(rectangle2);
 		window.draw(circle);
-		window.draw(pilka1);
+		 
 		window.draw(text);
 		window.display();
 

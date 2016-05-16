@@ -1,4 +1,4 @@
-#include "game.h"
+#include "Game.h"
 
 
 
@@ -7,7 +7,7 @@
 int main()
 {
     
-	game game1;
+	Game Game;
 
-    return game1.main();
+    return Game.run();
 }

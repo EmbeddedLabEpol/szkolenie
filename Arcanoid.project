@@ -30,12 +30,12 @@
   <Dependencies/>
   <VirtualDirectory Name="src">
     <File Name="main.cpp"/>
-    <File Name="game.h"/>
-    <File Name="game.cpp"/>
     <File Name="Ball.h"/>
     <File Name="Ball.cpp"/>
     <File Name="Block.h"/>
     <File Name="Block.cpp"/>
+    <File Name="Game.cpp"/>
+    <File Name="Game.h"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>

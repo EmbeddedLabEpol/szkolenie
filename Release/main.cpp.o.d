@@ -1,3 +1,3 @@
-Release/main.cpp.o: main.cpp game.h
+Release/main.cpp.o: main.cpp Game.h
 
-game.h:
+Game.h:
