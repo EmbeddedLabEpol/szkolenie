@@ -1,7 +1,7 @@
 #include "Game.h"
 #include "Ball.h"
 #include "Block.h"
-
+#include "Menu.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <cstdlib>
@@ -17,7 +17,8 @@ int Game::run()
 {
 	
 	Block b;
-	
+	Menu menu(WIDTH,HEIGHT);
+ 
 	// create the window
 	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Arcanoid - nasza wypas wersja 1.0");
 
@@ -53,10 +54,10 @@ int Game::run()
 		}
 
 		
- 
+        
 		window.draw(b.block);
- 
-		
+    
+		menu.draw_menu(window);
 		window.display();
 
 	}

@@ -12,7 +12,12 @@ private:
 
 	int WIDTH  ;
 	int HEIGHT ;
-	sf::Vector2f button_size(200.,150.);
+	
+	sf::Vector2f new_game_pos;
+	sf::Vector2f set_name_pos;
+	sf::Vector2f close_pos;
+	
+	sf::Vector2f button_size{	sf::Vector2f(400.0 , 150.0)     };
 	void init();
 	sf::RectangleShape new_game_b;
 	sf::RectangleShape set_name_b;
