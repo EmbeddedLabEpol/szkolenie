@@ -36,6 +36,8 @@
     <File Name="Block.cpp"/>
     <File Name="Game.cpp"/>
     <File Name="Game.h"/>
+    <File Name="Paddle.h"/>
+    <File Name="Paddle.cpp"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
