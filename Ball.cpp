@@ -1,6 +1,6 @@
 #include "Ball.h"
 
-Ball::Ball()
+Ball::Ball(int i):sf::CircleShape(i)
 {
 }
 

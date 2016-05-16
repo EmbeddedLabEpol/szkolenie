@@ -1,11 +1,15 @@
 #ifndef BALL_H
 #define BALL_H
-
-class Ball
+#include <SFML/Graphics.hpp>
+#include <iostream>
+#include <cstdlib>
+class Ball : public sf::CircleShape
 {
 public:
-	Ball();
+	Ball(int i);
 	~Ball();
+	
+	 
 
 };
 

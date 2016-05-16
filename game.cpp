@@ -45,7 +45,8 @@ int game::main()
 	}
 
 
-
+    Ball pilka1(50);
+    
 	//rectangle.setTexture(texture);
 	sf::Sprite rectangle;
 	//sf::RectangleShape rectangle(sf::Vector2f(rectW, rectH));
@@ -147,6 +148,7 @@ int game::main()
 		window.draw(rectangle1);
 		window.draw(rectangle2);
 		window.draw(circle);
+		window.draw(pilka1);
 		window.draw(text);
 		window.display();
 
