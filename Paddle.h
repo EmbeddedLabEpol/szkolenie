@@ -5,8 +5,10 @@
 class Paddle
 {
 private:
-	const float paddleWidth = 80, paddleHeight = 20;
-	float paddlePositionX, paddlePositionY;
+	float paddleWidth = 100;
+	const float paddleHeight = 20;
+	sf::Color paddleColor = sf::Color::Red;
+	float paddlePositionX, paddlePositionY, radius = paddleHeight/2;
 	sf::CircleShape leftCircle;
 	sf::RectangleShape rectangle;
 	sf::CircleShape rightCircle;
@@ -15,6 +17,8 @@ public:
 	Paddle(float, float);
 	void draw(sf::RenderWindow&);
 	void movePaddle(float);
+	void setPaddleWidth(float);
+	void setPaddleColor(sf::Color);
 	~Paddle();
 
 };

@@ -2,7 +2,9 @@
 #include "Ball.h"
 #include "Block.h"
 #include "Menu.h"
-//#include <vector>
+#include "Paddle.h"
+#include "GameWindow.h"
+#include <vector>
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <cstdlib>
@@ -121,6 +123,7 @@ int Game::run()
 		 
 		window.draw(circle);
 		//menu.draw_menu(window);
+		window.drawGUI();
 		window.display();
 
 	}
