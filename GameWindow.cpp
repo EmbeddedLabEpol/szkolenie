@@ -16,7 +16,7 @@ GameWindow::GameWindow(int windowWidth,int windowHight, std::string windowName):
 	float yPosLeftBorder = float (windowHight * upperMarginFactor);
 	float xPosUpperBorder = xPosLeftBorder + borderSize;
 	float yPosUpperBorder = yPosLeftBorder;
-	float xPosRightBorder = playableWidth + borderSize;
+	float xPosRightBorder = playableWidth + xPosLeftBorder + borderSize;
 	float yPosRightBorder = yPosLeftBorder;
 	float xPosLowerBorder = xPosUpperBorder;
 	float yPosLowerBorder = windowHight - borderSize;
@@ -34,6 +34,10 @@ GameWindow::~GameWindow()
 
 void GameWindow::drawGUI(sf::Time gameTime, int numberOfLifes )
 {
+	this->draw(upperBorder);
+	this->draw(lowerBorder);
+	this->draw(leftBorder);
+	this->draw(rightBorder);
 	
 }
 

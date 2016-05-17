@@ -3,6 +3,7 @@
 #include "Block.h"
 #include "Menu.h"
 #include "Paddle.h"
+#include "GameWindow.h"
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -34,7 +35,7 @@ int Game::run()
 	Menu menu(WIDTH,HEIGHT);
 	Paddle p(float(WIDTH/2), float(HEIGHT-50));
 // create the window
-	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Arcanoid - nasza wypas wersja 1.0");
+	GameWindow window(WIDTH, HEIGHT, "Arcanoid - nasza wypas wersja 1.0");
 
 	sf::Clock clock; // starts the clock
 	sf::Time elapsed = clock.getElapsedTime();
@@ -87,12 +88,13 @@ int Game::run()
 			clock.restart();
 		}
 
-		for(auto& block : blocks) window.draw(block);
+		//for(auto& block : blocks) window.draw(block);
 		//window.draw(block.block);
 
-		window.draw(circle);
-		p.draw(window);
+		//window.draw(circle);
+		//p.draw(window);
 		//menu.draw_menu(window);
+		window.drawGUI();
 		window.display();
 
 	}

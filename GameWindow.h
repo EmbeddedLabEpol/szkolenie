@@ -8,7 +8,7 @@
 constexpr int borderSize = 3;
 constexpr float sideMarginFactor = 0.15;
 constexpr float upperMarginFactor = 0.20;
-constexpr float playableWidthFactor = 0.85;
+constexpr float playableWidthFactor = 0.70;
 constexpr float playableHigthFactor = 0.80;
 
 class GameWindow : public sf::RenderWindow
@@ -22,7 +22,7 @@ public:
 	GameWindow(int windowWidth, int windowHight, std::string windowName);
 	~GameWindow();
 		
-	void drawGUI(sf::Time gameTime, int numberOfLifes = 3);
+	void drawGUI(sf::Time gameTime = sf::Time().Zero, int numberOfLifes = 3);
 	void setDisplayedUserName(std::string);
 	sf::FloatRect getPlayableField();
 	
