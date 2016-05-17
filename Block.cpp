@@ -60,7 +60,7 @@ bool Block::is_colision(float xc, float yc, float r)
 
 void Block::set_state(float xc, float yc, float r)
 {
-	state = is_colision(xc, yc, r);
+	state = !is_colision(xc, yc, r);
 }
 
 
