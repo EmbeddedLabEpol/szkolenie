@@ -1,14 +1,14 @@
 #include "Ball.h"
 
 Ball::Ball(double x, double y, int r): sf::CircleShape(r), speed(10.0), directionX(-1), directionY(-1)
-{	
+{
 	this->setOrigin(this->getRadius(), this->getRadius());
 	this->setPosition(x, y);
 	this->setFillColor(sf::Color::Blue);
-	
+
 	this->setOutlineThickness(5);
 	this->setOutlineColor(sf::Color::Red);
-	
+
 	sf::Texture texture;
 	texture.loadFromFile("../ruda.png");
 	this->setTexture(&texture);
@@ -16,13 +16,13 @@ Ball::Ball(double x, double y, int r): sf::CircleShape(r), speed(10.0), directio
 
 Ball::~Ball()
 {
-	
+
 }
 
-void Ball::move() 
+void Ball::move()
 {
-	this->setPosition(getX() + (directionX * speed), 
-					  getY() + (directionY * speed));
+	this->setPosition(getX() + (directionX * speed),
+	                  getY() + (directionY * speed));
 }
 
 double Ball::getX()
@@ -36,87 +36,97 @@ double Ball::getY()
 }
 
 void Ball::speedUp()
-{	
+{
 	if(speed < 2)
 		speed += 0.1;
 }
 
 void Ball::slowDown()
-{	
+{
 	if(speed > 0)
 		speed -= 0.1;
 }
+
+void Ball::bouncePaddle(int side)
+{
+	switch(side) {
+	case 1:
+		directionX = -directionX;
+		directionY = -directionY;
+		break;
+	case 2:
+		directionY = -directionY;
+		break;
+	case 3:
+		directionX = -directionX;
+		directionY = -directionY;
+		break;
+	default:
+		break;
+
+	}
+}
 void Ball::bounceWall(sf::FloatRect rect)
 {
-	
-	if(((this->getPosition().x + this->getRadius() > (rect.left + rect.width)) || 
-		(this->getPosition().x - this->getRadius() < rect.left)))
-	{
+
+	if(((this->getPosition().x + this->getRadius() > (rect.left + rect.width)) ||
+	    (this->getPosition().x - this->getRadius() < rect.left))) {
 		directionX = -directionX;
 	}
 
-	
+
 	//std::cout << rect. << std::endl;
-	if(((this->getPosition().y + this->getRadius() > (rect.top + rect.height)) || 
-		(this->getPosition().y - this->getRadius() < rect.top))) 
-	{
-	   directionY = -directionY;
+	if(((this->getPosition().y + this->getRadius() > (rect.top + rect.height)) ||
+	    (this->getPosition().y - this->getRadius() < rect.top))) {
+		directionY = -directionY;
 	}
-	
-	/*if(((this->getPosition().x + this->getRadius() > (rect.left + rect.width)) || 
+
+	/*if(((this->getPosition().x + this->getRadius() > (rect.left + rect.width)) ||
 		(this->getPosition().x - this->getRadius() < rect.left)))
 	{
 		directionX = -directionX;
 	}
 
-	
+
 	std::cout << rect. << std::endl;
-	if(((this->getPosition().y + this->getRadius() > (rect.top + rect.height)) || 
-		(this->getPosition().y - this->getRadius() < rect.top))) 
+	if(((this->getPosition().y + this->getRadius() > (rect.top + rect.height)) ||
+		(this->getPosition().y - this->getRadius() < rect.top)))
 	{
 	   directionY = -directionY;
 	}*/
 
 }
 void Ball::bounce(sf::RectangleShape shape)
-{	
-	if(this->getPosition().x > shape.getPosition().x) //lece z prawej
-	{
-		if(this->getPosition().y > shape.getPosition().y ) //lece z dolu
-		{
+{
+	if(this->getPosition().x > shape.getPosition().x) { //lece z prawej
+		if(this->getPosition().y > shape.getPosition().y ) { //lece z dolu
 			directionY = 1;
-		} else	//lece z gory
-		{
+		} else {	//lece z gory
 			directionY = -1;
 		}
-		
-	}
-	else // lece z lewej
-	{
-		if(this->getPosition().y > shape.getPosition().y ) //lece z dolu
-		{
+
+	} else { // lece z lewej
+		if(this->getPosition().y > shape.getPosition().y ) { //lece z dolu
 			directionY = 1;
-		} else	//lece z gory
-		{
+		} else {	//lece z gory
 			directionY = -1;
 		}
 	}
-	
+
 	//directionX = _directionX;
 	//directionY = _directionY;
 }
 
 bool Ball::checkColision(sf::RectangleShape shape)
-{	
+{
 	bool b = false;
 	sf::FloatRect rbound = shape.getGlobalBounds();
 	b = rbound.intersects(this->getGlobalBounds());
-	
-	if(b) 
-	{
+
+	if(b) {
 		this->bounce(shape);
 	}
-	
+
 	return b;
 }
 
@@ -126,17 +136,15 @@ void Ball::checkWallColision(sf::FloatRect rect)
 	//sf::FloatRect rbound = shape.getGlobalBounds();
 	b = rect.intersects(this->getGlobalBounds());
 
-	if(b) 
-	{
+	if(b) {
 		this->bounceWall(rect);
 	}
 }
 
 bool Ball::checkColision(Block block)
-{	
+{
 	bool b = block.is_colision(this->getPosition().x, this->getPosition().y, this->getRadius());
-	if(b) 
-	{
+	if(b) {
 		this->bounce(block);
 	}
 	return b;

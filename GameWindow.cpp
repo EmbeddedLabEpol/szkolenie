@@ -50,7 +50,7 @@ void GameWindow::setBorder(sf::RectangleShape &border, const sf::Vector2f &_bord
 
 sf::FloatRect GameWindow::getPlayableField()
 {
-	std::cout<< upperBorder.getGlobalBounds().left << std::endl;
+	//std::cout<< upperBorder.getGlobalBounds().left << std::endl;
 	return sf::FloatRect(upperBorder.getGlobalBounds().left, upperBorder.getGlobalBounds().top+borderSize, upperBorder.getSize().x, leftBorder.getSize().y);
 }
 
