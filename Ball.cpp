@@ -1,6 +1,6 @@
 #include "Ball.h"
 
-Ball::Ball(double x, double y, int r): sf::CircleShape(r), speed(1.0), directionX(0), directionY(-1)
+Ball::Ball(double x, double y, int r): sf::CircleShape(r), speed(10.0), directionX(-1), directionY(-1)
 {	
 	this->setOrigin(this->getRadius(), this->getRadius());
 	this->setPosition(x, y);
@@ -9,9 +9,9 @@ Ball::Ball(double x, double y, int r): sf::CircleShape(r), speed(1.0), direction
 	this->setOutlineThickness(5);
 	this->setOutlineColor(sf::Color::Red);
 	
-	//sf::Texture texture;
-	//texture.loadFromFile("../ruda.png");
-	//this->setTexture(&texture);
+	sf::Texture texture;
+	texture.loadFromFile("../ruda.png");
+	this->setTexture(&texture);
 }
 
 Ball::~Ball()
@@ -46,14 +46,54 @@ void Ball::slowDown()
 	if(speed > 0)
 		speed -= 0.1;
 }
-
-void Ball::bounce(int _directionX, int _directionY)
+void Ball::bounceWall(sf::FloatRect rect)
 {
-	directionX = _directionX;
-	directionY = _directionY;
+	
+	/* if ball at most right of screen then reverse ball's x heading */
+	if(((this->getPosition().x + this->getRadius() > (rect.left + rect.width)) || 
+		(this->getPosition().x - this->getRadius() < rect.left)))
+	{
+		directionX = -directionX;
+	}
+
+	/* check if ball's location at top or bottom of screen,if true reverse ball's y heading */
+	std::cout << rect.top << std::endl;
+	if(((this->getPosition().y + this->getRadius() > (rect.top + rect.height)) || 
+		(this->getPosition().y - this->getRadius() < rect.top))) 
+	{
+	   directionY = -directionY;
+	}
+
+}
+void Ball::bounce(sf::RectangleShape shape)
+{	
+	if(this->getPosition().x > shape.getPosition().x) //lece z prawej
+	{
+		if(this->getPosition().y > shape.getPosition().y ) //lece z dolu
+		{
+			directionY = 1;
+		} else	//lece z gory
+		{
+			directionY = -1;
+		}
+		
+	}
+	else // lece z lewej
+	{
+		if(this->getPosition().y > shape.getPosition().y ) //lece z dolu
+		{
+			directionY = 1;
+		} else	//lece z gory
+		{
+			directionY = -1;
+		}
+	}
+	
+	//directionX = _directionX;
+	//directionY = _directionY;
 }
 
-void Ball::checkColision(sf::RectangleShape shape)
+bool Ball::checkColision(sf::RectangleShape shape)
 {	
 	bool b = false;
 	sf::FloatRect rbound = shape.getGlobalBounds();
@@ -61,6 +101,30 @@ void Ball::checkColision(sf::RectangleShape shape)
 	
 	if(b) 
 	{
-		this->bounce(-1,1);
+		this->bounce(shape);
 	}
+	
+	return b;
+}
+
+void Ball::checkWallColision(sf::FloatRect rect)
+{
+	bool b = false;
+	//sf::FloatRect rbound = shape.getGlobalBounds();
+	b = rect.intersects(this->getGlobalBounds());
+
+	if(b) 
+	{
+		this->bounceWall(rect);
+	}
+}
+
+bool Ball::checkColision(Block block)
+{	
+	bool b = block.is_colision(this->getPosition().x, this->getPosition().y, this->getRadius());
+	if(b) 
+	{
+		this->bounce(block);
+	}
+	return b;
 }

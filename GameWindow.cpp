@@ -1,11 +1,12 @@
 #include "GameWindow.h"
+#include <iostream>
 
 
 GameWindow::GameWindow()
 {
 	
 }
-GameWindow::GameWindow(int playableWindowHight, int playableWindowWidth, int windowHight, int windowWidth){}
+
 
 GameWindow::GameWindow(int windowWidth,int windowHight, std::string windowName):sf::RenderWindow(sf::VideoMode(windowWidth, windowHight), windowName)
 {
@@ -45,5 +46,11 @@ void GameWindow::setBorder(sf::RectangleShape &border, const sf::Vector2f &_bord
 	border.setSize(_borderSize);
 	border.setPosition(borderPosition.x, borderPosition.y);
 	border.setFillColor(borderColor);
+}
+
+sf::FloatRect GameWindow::getPlayableField()
+{
+	std::cout<< upperBorder.getGlobalBounds().left << std::endl;
+	return sf::FloatRect(upperBorder.getGlobalBounds().left, upperBorder.getGlobalBounds().top+borderSize, upperBorder.getSize().x, leftBorder.getSize().y);
 }
 

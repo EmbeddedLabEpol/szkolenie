@@ -1,6 +1,9 @@
 #ifndef PADDLE_H
 #define PADDLE_H
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include "Ball.h"
+#include <vector>
 
 class Paddle
 {
@@ -12,6 +15,7 @@ private:
 	sf::CircleShape leftCircle;
 	sf::RectangleShape rectangle;
 	sf::CircleShape rightCircle;
+	int checkPaddleCollisionSide(float, float, float, float, float);
 
 public:
 	Paddle(float, float);
@@ -19,6 +23,7 @@ public:
 	void movePaddle(float);
 	void setPaddleWidth(float);
 	void setPaddleColor(sf::Color);
+	int isCollision(sf::CircleShape&, sf::RenderWindow&);
 	~Paddle();
 
 };
