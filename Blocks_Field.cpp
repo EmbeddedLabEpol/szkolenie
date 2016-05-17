@@ -46,3 +46,15 @@ void Blocks_Field::draw_field(sf::RenderWindow& window)
 			if(blocks[r][c].state)
 				window.draw(blocks[r][c]);
 }
+
+std::vector<Block> Blocks_Field::get_dawable_blocks()
+{
+	std::vector<Block> tmp_v;
+	
+	for(unsigned int r = 0; r < blocks.size(); ++r)
+		for(unsigned int c = 0; c < blocks[r].size(); ++c)
+			if(blocks[r][c].state)
+				tmp_v.push_back(blocks[r][c]);
+				
+	return tmp_v;
+}

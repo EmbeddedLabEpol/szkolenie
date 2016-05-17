@@ -12,6 +12,7 @@ public:
 	void create_matrix(const int);
 	void set_blocks_state(float, float, float);
 	void draw_field(sf::RenderWindow&);
+	std::vector<Block> get_dawable_blocks();
 	
 private:
 	std::vector<std::vector<Block>> blocks;
