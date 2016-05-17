@@ -69,12 +69,12 @@ int Game::run()
 	sf::Time elapsed = clock.getElapsedTime();
  
   
-	unsigned int r = 30;
+	unsigned int r = 15;
 
 	 
 	
-	float xc = 400;
-	float yc = 300;
+	float xc = 440;
+	float yc = 220;
 	
  
  
@@ -88,19 +88,8 @@ int Game::run()
 		sf::Event event;
 		while (window.pollEvent(event)) {
  
-			/*if (event.type == sf::Event::MouseMoved) {
-				std::cout << "new mouse x: " << event.mouseMove.x << std::endl;
-				std::cout << "new mouse y: " << event.mouseMove.y << std::endl;
-=======
-			if (event.type == sf::Event::MouseMoved) {
-				//std::cout << "new mouse x: " << event.mouseMove.x << std::endl;
-				//std::cout << "new mouse y: " << event.mouseMove.y << std::endl;
-				xc = event.mouseMove.x;
-				yc = event.mouseMove.y;
-				circle.setPosition(xc, yc);
->>>>>>> a9fecf2ad6c6c2af2f91e84839da0f90106715d9
-			}
-			*/
+		
+			
 			// "close requested" event: we close the window
 			if (event.type == sf::Event::Closed)
 				window.close();
@@ -108,7 +97,7 @@ int Game::run()
 			if (event.type == sf::Event::MouseButtonPressed)
 			{
 				
-					b.set_blocks_state(xc, yc, r);
+					
 					//blocks[0][0].state = false;
 			}
 		}
@@ -116,16 +105,14 @@ int Game::run()
 
 		// clear the window with black color
 		window.clear(sf::Color::Black);
-
-
 		elapsed = clock.getElapsedTime();
 
-		if(elapsed.asMilliseconds() > 100) {
+		//if(elapsed.asMilliseconds() > 100) {
 
 
-			clock.restart();
-		}
-		
+			//clock.restart();
+		//}
+		b.set_blocks_state(ball.getPosition().x, ball.getPosition().y, ball.getRadius());
 		ball.move();
 		ball.checkWallColision(window.getPlayableField());
 		
@@ -134,17 +121,11 @@ int Game::run()
 		for(unsigned int i = 0; i < tmp_vb.size(); ++i)
 				ball.checkColision(tmp_vb[i]);
 		
-		//generateBlocksFields(blocks, rows_no, columns_no);
-		//for(auto& block : blocks) window.draw(block);
-		//window.draw(block.block);
  
 		b.draw_field(window);
 		
 		window.draw(ball);
-		 
-		//menu.draw_menu(window);
-		window.drawGUI();
- 
+		window.drawGUI(); 
 		window.display();
 
 	}

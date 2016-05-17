@@ -6,8 +6,8 @@ Ball::Ball(double x, double y, int r): sf::CircleShape(r), speed(10.0), directio
 	this->setPosition(x, y);
 	this->setFillColor(sf::Color::Blue);
 	
-	this->setOutlineThickness(5);
-	this->setOutlineColor(sf::Color::Red);
+	//this->setOutlineThickness(5);
+	//this->setOutlineColor(sf::Color::Red);
 	
 	sf::Texture texture;
 	texture.loadFromFile("../ruda.png");
@@ -121,10 +121,12 @@ void Ball::checkWallColision(sf::FloatRect rect)
 
 bool Ball::checkColision(Block &block)
 {	
+	//sf::FloatRect rbound = block.getGlobalBounds();
+	//bool b = rbound.intersects(this->getGlobalBounds());
 	bool b = block.is_colision(this->getPosition().x, this->getPosition().y, this->getRadius());
 	if(b) 
 	{
-		block.state=false;
+		block.state = false;
 		this->bounce(block);
 	}
 	return b;
