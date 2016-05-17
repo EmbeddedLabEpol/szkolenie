@@ -252,7 +252,7 @@ void Menu::intro(sf::RenderWindow& w)
 	logo.setOrigin(140,0);
 	logo.setPosition(WIDTH/2,10);
 	
-	for (unsigned int i =155 ; i >1; --i) {
+	for (unsigned int i =155 ; i >10; i-=10) {
 		w.clear(sf::Color(255,i,255,255));
 		if ( i % 25 == 0) {
 			temp+=".";

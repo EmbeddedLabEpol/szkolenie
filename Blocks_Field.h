@@ -3,7 +3,7 @@
 
 #include "Block.h" // Base class: Block
 
-class Blocks_Field : private Block
+class Blocks_Field : public Block
 {
 public:
 	Blocks_Field();

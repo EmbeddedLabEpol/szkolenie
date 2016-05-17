@@ -17,7 +17,7 @@ Game::Game()
 Game::~Game()
 {
 }
-<<<<<<< HEAD
+ 
 void Game::generateBlocksFields(std::vector<Block>& blocks, int rows, int cols)
 {
 
@@ -25,7 +25,7 @@ void Game::generateBlocksFields(std::vector<Block>& blocks, int rows, int cols)
 		for(int y= 0; y < cols; ++y)
 			blocks.emplace_back(x*60+5, y*40+5);
 }
-=======
+ 
 //void Game::generateBlocksFields(std::vector<Block>& blocks, int rows, int cols){
 //
 //    for(int x = 0; x < rows; ++x)
@@ -33,7 +33,7 @@ void Game::generateBlocksFields(std::vector<Block>& blocks, int rows, int cols)
 //		  if()
 //			//blocks.emplace_back(x*60, y*40);
 //}
->>>>>>> a9fecf2ad6c6c2af2f91e84839da0f90106715d9
+ 
 
 int Game::run()
 {
@@ -45,7 +45,7 @@ int Game::run()
 
 	//std::vector<std::vector<Block>> blocks;
 	
- 	Menu menu(WIDTH,HEIGHT);	
+ 	 
  
 // create the window
 	GameWindow window(WIDTH, HEIGHT, "Arcanoid - nasza wypas wersja 2.0");
@@ -71,14 +71,16 @@ int Game::run()
   
 	unsigned int r = 30;
 
-	sf::CircleShape circle(r);
-	circle.setFillColor(sf::Color::Blue);
-	circle.setOrigin(30, 30);
+	 
 	
 	float xc = 400;
 	float yc = 300;
 	
-	circle.setPosition(xc, yc);
+ 
+ 
+	
+	Ball ball{xc, yc, r};
+  
  
 
 	while (window.isOpen()) {
@@ -124,13 +126,22 @@ int Game::run()
 			clock.restart();
 		}
 		
+		ball.move();
+		ball.checkWallColision(window.getPlayableField());
+		
+		std::vector<Block> tmp_vb = b.get_dawable_blocks();
+		
+		for(unsigned int i = 0; i < tmp_vb.size(); ++i)
+				ball.checkColision(tmp_vb[i]);
+		
 		//generateBlocksFields(blocks, rows_no, columns_no);
 		//for(auto& block : blocks) window.draw(block);
 		//window.draw(block.block);
  
 		b.draw_field(window);
+		
+		window.draw(ball);
 		 
-		window.draw(circle);
 		//menu.draw_menu(window);
 		window.drawGUI();
  
