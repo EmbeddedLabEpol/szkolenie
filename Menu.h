@@ -6,6 +6,7 @@ class Menu
 public:
 	Menu(int w, int h);
 	~Menu();
+	bool run_menu(sf::RenderWindow& w);
 	void draw_menu(sf::RenderWindow& w);
 
 private:
