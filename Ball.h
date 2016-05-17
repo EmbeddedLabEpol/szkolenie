@@ -15,7 +15,7 @@ class Ball : public sf::CircleShape
 	void slowDown();
 	void bounce(sf::RectangleShape);
 	bool checkColision(sf::RectangleShape);
-	bool checkColisionBlock(Block &block);
+	bool checkColision(Block &block);
 	void bounceWall(sf::FloatRect);
 	void checkWallColision(sf::FloatRect);
 	
