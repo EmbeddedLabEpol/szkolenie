@@ -13,15 +13,16 @@ class Ball : public sf::CircleShape
 	void move();
 	void speedUp();
 	void slowDown();
-	void bounce(int _directionX, int _directionY);
-	void checkColision(sf::RectangleShape);
-	void checkColision(Block block);
-	
+	void bounce(sf::RectangleShape);
+	bool checkColision(sf::RectangleShape);
+	bool checkColision(Block block);
+	void bounceWall();
+	void checkWallColision(sf::RectangleShape);
 	
 private:
 	double speed;
-	int directionY;
 	int directionX;
+	int directionY;
 	
 	double getX();
 	double getY();
