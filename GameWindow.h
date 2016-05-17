@@ -18,7 +18,6 @@ public:
 	const int playableWindowWidth = 900;
 	
 	GameWindow();
-	GameWindow(int playableWindowWidth, int playableWindowHight, int windowWidth, int windowHight);
 	GameWindow(int windowWidth, int windowHight, std::string windowName);
 	~GameWindow();
 		
