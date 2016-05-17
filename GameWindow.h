@@ -26,10 +26,10 @@ public:
 	void setDisplayedUserName(std::string);
 	sf::FloatRect getPlayableField();
 	
-	sf::RectangleShape getUpperBorder();
-	sf::RectangleShape getLowerBorder();
-	sf::RectangleShape getLeftBorder();
-	sf::RectangleShape getRightBorder();
+	sf::RectangleShape getUpperBorder(){return upperBorder;}
+	sf::RectangleShape getLowerBorder(){return lowerBorder;}
+	sf::RectangleShape getLeftBorder(){return leftBorder;}
+	sf::RectangleShape getRightBorder(){return rightBorder;}
 	
 
 private:
