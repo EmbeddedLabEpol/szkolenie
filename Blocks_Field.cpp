@@ -13,7 +13,7 @@ void Blocks_Field::create_matrix(const int width, float x, float y)
 	Block tmp_b;
 	
 	const unsigned int columns_no = width/tmp_b.get_size_x();
-	const unsigned int rows_no = 5;
+	const unsigned int rows_no = 3;
 	
 	std::vector<Block> tmp_v;
 		
