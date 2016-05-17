@@ -9,9 +9,9 @@ Ball::Ball(double x, double y, int r): sf::CircleShape(r), speed(10.0), directio
 	this->setOutlineThickness(5);
 	this->setOutlineColor(sf::Color::Red);
 	
-	//sf::Texture texture;
-	//texture.loadFromFile("../ruda.png");
-	//this->setTexture(&texture);
+	sf::Texture texture;
+	texture.loadFromFile("../ruda.png");
+	this->setTexture(&texture);
 }
 
 Ball::~Ball()
@@ -46,17 +46,18 @@ void Ball::slowDown()
 	if(speed > 0)
 		speed -= 0.1;
 }
-void Ball::bounceWall()
+void Ball::bounceWall(sf::FloatRect rect)
 {
 	/* if ball at most right of screen then reverse ball's x heading */
-	if(((this->getPosition().x+this->getRadius() > 1024) || (this->getPosition().x-this->getRadius() < 0)))
+	if(((this->getPosition().x + this->getRadius() > (rect.left + rect.width)) || 
+		(this->getPosition().x - this->getRadius() < rect.left)))
 	{
 		directionX = -directionX;
-
 	}
 
 	/* check if ball's location at top or bottom of screen,if true reverse ball's y heading */
-	if(((this->getPosition().y+this->getRadius() > 768) || (this->getPosition().y+this->getRadius() < 0))) 
+	if(((this->getPosition().y + this->getRadius() > (rect.top + rect.height)) || 
+		(this->getPosition().y - this->getRadius() < rect.top))) 
 	{
 	   directionY = -directionY;
 	}
@@ -104,15 +105,15 @@ bool Ball::checkColision(sf::RectangleShape shape)
 	return b;
 }
 
-void Ball::checkWallColision(sf::RectangleShape shape)
+void Ball::checkWallColision(sf::FloatRect rect)
 {
 	bool b = false;
-	sf::FloatRect rbound = shape.getGlobalBounds();
-	b = rbound.intersects(this->getGlobalBounds());
-	
+	//sf::FloatRect rbound = shape.getGlobalBounds();
+	b = rect.intersects(this->getGlobalBounds());
+
 	if(b) 
 	{
-		this->bounceWall();
+		this->bounceWall(rect);
 	}
 }
 

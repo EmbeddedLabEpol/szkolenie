@@ -101,13 +101,7 @@ int Game::run()
 			
 		}
 			ball.checkWallColision(window.getUpperBorder());
-			ball.checkWallColision(window.getLeftBorder());
-			ball.checkWallColision(window.getRightBorder());
-			ball.checkWallColision(window.getLowerBorder());
-			//window.draw(w1);
-			//window.draw(w2);
-			//window.draw(pad);
-		//window.draw(block.block);
+			
 		 
     
 
