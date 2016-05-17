@@ -27,7 +27,7 @@ void Game::generateBlocksFields(std::vector<Block>& blocks, int rows, int cols){
 
 int Game::run()
 {	
-	Ball ball{500,800,30};
+	Ball ball{500,700,15};
 	
 	
 	//Block block;
@@ -65,24 +65,29 @@ int Game::run()
 		//ball.checkColision()
 		elapsed = clock.getElapsedTime();
 
-		if(elapsed.asMilliseconds() > 100) {
+		//if(elapsed.asMilliseconds() > 100) {
 
 			window.clear(sf::Color::Yellow);
 			window.draw(ball);
+			
+			for(Block block : blocks)
+			{
+				window.draw(block);
+				ball.checkColision((sf::RectangleShape)block);
+				
+			}
+			
+			ball.checkWallColision(window.getPlayableField());
+			
 			clock.restart();
-		}
+		//}
 
-		for(auto& block : blocks) window.draw(block);
+		//for(auto& block : blocks) window.draw(block);
 		//window.draw(block.block);
 
 
-		for(Block block : blocks)
-		{
-			window.draw(block);
-			ball.checkColision((sf::RectangleShape)block);
+		
 			
-		}
-			ball.checkWallColision(window.getPlayableField());
 			
 		 
     
