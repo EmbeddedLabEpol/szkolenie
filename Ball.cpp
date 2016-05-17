@@ -126,8 +126,9 @@ bool Ball::checkColision(Block &block)
 	bool b = block.is_colision(this->getPosition().x, this->getPosition().y, this->getRadius());
 	if(b) 
 	{
-		block.state = false;
+		std::cout << "colision" << std::endl;
 		this->bounce(block);
+		block.state = false;
 	}
 	return b;
 }
