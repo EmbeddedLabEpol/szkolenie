@@ -55,6 +55,8 @@ int Game::run()
 	float yc = 300;
 	
 	circle.setPosition(xc, yc);
+	
+	Ball ball{xc, yc, r};
   
 
 	while (window.isOpen()) {
@@ -94,12 +96,21 @@ int Game::run()
 			clock.restart();
 		}
 		
+		ball.move();
+		ball.checkWallColision(window.getPlayableField());
+		
+		std::vector<Block> tmp_vb = b.get_dawable_blocks();
+		
+		for(unsigned int i = 0; i < tmp_vb.size(); ++i)
+				ball.checkColision(tmp_vb[i]);
+		
 		//generateBlocksFields(blocks, rows_no, columns_no);
 		//for(auto& block : blocks) window.draw(block);
 		//window.draw(block.block);
 		
 		b.draw_field(window);
-		 
+		
+		window.draw(ball);
 		window.draw(circle);
 		//menu.draw_menu(window);
 		window.drawGUI();
