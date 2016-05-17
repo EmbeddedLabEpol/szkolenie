@@ -1,6 +1,6 @@
 #include "Ball.h"
 
-Ball::Ball(double x, double y, int r): sf::CircleShape(r), speed(1.0), directionX(0), directionY(-1)
+Ball::Ball(double x, double y, int r): sf::CircleShape(r), speed(2.0), directionX(1), directionY(-1)
 {	
 	this->setOrigin(this->getRadius(), this->getRadius());
 	this->setPosition(x, y);
@@ -61,6 +61,14 @@ void Ball::checkColision(sf::RectangleShape shape)
 	
 	if(b) 
 	{
-		this->bounce(-1,1);
+		this->bounce(-directionX,-directionY);
+	}
+}
+
+void Ball::checkColision(Block block)
+{	
+	if(block.is_colision(this->getPosition().x, this->getPosition().y, this->getRadius())) 
+	{
+		this->bounce(-directionX,-directionY);
 	}
 }
