@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <cstdlib>
+#include "Block.h"
 
 class Ball : public sf::CircleShape
 {
@@ -12,14 +13,16 @@ class Ball : public sf::CircleShape
 	void move();
 	void speedUp();
 	void slowDown();
-	void bounce(int _directionX, int _directionY);
-	void checkColision(sf::RectangleShape);
-	
+	void bounce(sf::RectangleShape);
+	bool checkColision(sf::RectangleShape);
+	bool checkColision(Block block);
+	void bounceWall(sf::FloatRect);
+	void checkWallColision(sf::FloatRect);
 	
 private:
 	double speed;
-	int directionY;
 	int directionX;
+	int directionY;
 	
 	double getX();
 	double getY();
