@@ -48,9 +48,6 @@ int Game::run()
 	while (window.isOpen()) {
 		// check all the window's events that were triggered since the last iteration of the loop
 		sf::Event event;
-		
-		
-		
 		while (window.pollEvent(event)) {
 			if (event.type == sf::Event::MouseMoved) {
 				std::cout << "new mouse x: " << event.mouseMove.x << std::endl;

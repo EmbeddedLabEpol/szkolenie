@@ -42,26 +42,26 @@ void Menu::init()
 	text_set_name.setFont(font);
 	   text_close.setFont(font);
 // set the string to display
-	text_new_game.setString("NEW GAME");
-	text_set_name.setString("SET NAME");
+	text_new_game.setString("  NEW GAME");
+	text_set_name.setString("  SET NAME");
 	   text_close.setString("CLOSE GAME");
 // set the character size
 	 // in pixels, not points!
-	text_new_game.setCharacterSize(50);
-	text_set_name.setCharacterSize(50);
-	   text_close.setCharacterSize(50);
+	text_new_game.setCharacterSize(55);
+	text_set_name.setCharacterSize(55);
+	   text_close.setCharacterSize(55);
 // set the color
 	text_new_game.setColor(sf::Color::Black);
 	text_set_name.setColor(sf::Color::Black);
 	   text_close.setColor(sf::Color::Black);
 // set the text style
-	text_new_game.setStyle(sf::Text::Bold | sf::Text::Underlined);
-	text_set_name.setStyle(sf::Text::Bold | sf::Text::Underlined);
-	   text_close.setStyle(sf::Text::Bold | sf::Text::Underlined);
+	//text_new_game.setStyle(sf::Text::Bold  );
+	//text_set_name.setStyle(sf::Text::Bold  );
+	//   text_close.setStyle(sf::Text::Bold  );
 	// set orgin
-	text_new_game.setOrigin(button_size.x/2,button_size.y);
-	text_set_name.setOrigin(button_size.x/2,button_size.y);
-	   text_close.setOrigin(button_size.x/2,button_size.y);
+	 text_new_game.setOrigin(button_size.x/2,button_size.y/2);
+	 text_set_name.setOrigin(button_size.x/2,button_size.y/2);
+	    text_close.setOrigin(button_size.x/2,button_size.y/2);
 
 	
 // set pos
