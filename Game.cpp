@@ -51,7 +51,7 @@ int Game::run()
 	
 //	Menu menu(WIDTH,HEIGHT);	
 // create the window
-	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Arcanoid - nasza wypas wersja 1.0");
+	GameWindow window(WIDTH, HEIGHT, "Arcanoid - nasza wypas wersja 1.0");
 
 	sf::Clock clock; // starts the clock
 	sf::Time elapsed = clock.getElapsedTime();
@@ -116,14 +116,9 @@ int Game::run()
 		//for(auto& block : blocks) window.draw(block);
 		//window.draw(block.block);
 		
-		for(unsigned int r = 0; r < rows_no; ++r)
-			for(unsigned int c = 0; c < columns_no; ++c)
-				if(blocks[r][c].state)
-					window.draw(blocks[r][c]);
-		 
-		window.draw(circle);
 		//menu.draw_menu(window);
 		window.drawGUI();
+		window.getPlayableField();
 		window.display();
 
 	}
