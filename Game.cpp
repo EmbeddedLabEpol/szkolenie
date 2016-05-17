@@ -31,12 +31,16 @@ int Game::run()
 	//Block block;
 	//std::vector<std::vector<Block>> blocks;
 	
-	Blocks_Field b;
-	b.create_matrix(WIDTH);
-	
 //	Menu menu(WIDTH,HEIGHT);	
 // create the window
-	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Arcanoid - nasza wypas wersja 1.0");
+	GameWindow window(WIDTH, HEIGHT, "Arcanoid - nasza wypas wersja 1.0");
+	
+	float width = window.getPlayableField().width;
+	float x = window.getPlayableField().left;
+	float y = window.getPlayableField().top;
+	
+	Blocks_Field b;
+	b.create_matrix(width, x, y);
 
 	sf::Clock clock; // starts the clock
 	sf::Time elapsed = clock.getElapsedTime();
@@ -98,7 +102,7 @@ int Game::run()
 		 
 		window.draw(circle);
 		//menu.draw_menu(window);
-		//window.drawGUI();
+		window.drawGUI();
 		window.display();
 
 	}
