@@ -8,6 +8,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <cstdlib>
+#include "Blocks_Field.h"
+
 Game::Game()
 {
 }
@@ -28,26 +30,9 @@ int Game::run()
 	
 	//Block block;
 	//std::vector<std::vector<Block>> blocks;
-	Block tmp_b;
 	
-	const unsigned int columns_no = WIDTH/tmp_b.get_size_x();
-	const unsigned int rows_no = 10;
-	
-	std::vector<Block> tmp_v;
-	std::vector<std::vector<Block>> blocks;
-		
-	for(unsigned int c = 0; c < columns_no; ++c)
-		tmp_v.push_back(* new Block);
-		
-	for(unsigned int r = 0; r < rows_no; ++r)
-		blocks.push_back(tmp_v);
-	
-	const float first_position_x = (WIDTH - columns_no * tmp_b.get_size_x()) / 2;
-	const float first_position_y = 0;
-	
-	for(unsigned int r = 0; r < rows_no; ++r)
-		for(unsigned int c = 0; c < columns_no; ++c)
-			blocks[r][c].setPosition(first_position_x + tmp_b.get_size_x() * c, first_position_y + tmp_b.get_size_y() * r);
+	Blocks_Field b;
+	b.create_matrix(WIDTH);
 	
 //	Menu menu(WIDTH,HEIGHT);	
 // create the window
@@ -86,15 +71,8 @@ int Game::run()
 				
 			if (event.type == sf::Event::MouseButtonPressed)
 			{
-				for(unsigned int r = 0; r < rows_no; ++r)
-					for(unsigned int c = 0; c < columns_no; ++c)
-					{
-						std::cout << blocks[r][c].is_colision(xc, yc, r) << std::endl;
-						
-						if(blocks[r][c].state && blocks[r][c].is_colision(xc, yc, r))
-							blocks[r][c].state = false;				
-					}
-					
+				
+					b.set_blocks_state(xc, yc, r);
 					//blocks[0][0].state = false;
 			}
 		}
@@ -116,14 +94,11 @@ int Game::run()
 		//for(auto& block : blocks) window.draw(block);
 		//window.draw(block.block);
 		
-		for(unsigned int r = 0; r < rows_no; ++r)
-			for(unsigned int c = 0; c < columns_no; ++c)
-				if(blocks[r][c].state)
-					window.draw(blocks[r][c]);
+		b.draw_field(window);
 		 
 		window.draw(circle);
 		//menu.draw_menu(window);
-		window.drawGUI();
+		//window.drawGUI();
 		window.display();
 
 	}
