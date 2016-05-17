@@ -119,7 +119,7 @@ void Ball::checkWallColision(sf::FloatRect rect)
 	}
 }
 
-bool Ball::checkColision(Block &block)
+bool Ball::checkColisionBlock(Block &block)
 {	
 	bool b = block.is_colision(this->getPosition().x, this->getPosition().y, this->getRadius());
 	if(b) 

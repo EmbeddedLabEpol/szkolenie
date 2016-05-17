@@ -132,7 +132,7 @@ int Game::run()
 		std::vector<Block> tmp_vb = b.get_dawable_blocks();
 		
 		for(unsigned int i = 0; i < tmp_vb.size(); ++i)
-				ball.checkColision(tmp_vb[i]);
+				ball.checkColisionBlock(tmp_vb[i]);
 		
 		//generateBlocksFields(blocks, rows_no, columns_no);
 		//for(auto& block : blocks) window.draw(block);
