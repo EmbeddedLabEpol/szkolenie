@@ -47,3 +47,8 @@ void GameWindow::setBorder(sf::RectangleShape &border, const sf::Vector2f &_bord
 	border.setFillColor(borderColor);
 }
 
+sf::FloatRect GameWindow::getPlayableField()
+{
+	return sf::FloatRect(upperBorder.getOrigin().x, upperBorder.getOrigin().y+borderSize, upperBorder.getSize().x, leftBorder.getSize().y);
+}
+
