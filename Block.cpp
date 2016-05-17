@@ -2,7 +2,7 @@
 #include <math.h>
 
 Block::Block(float x, float y):
-sf::RectangleShape(sf::Vector2f(40, 20)),
+sf::RectangleShape(sf::Vector2f(80, 40)),
 state(true)
 {
 	this->setPosition(x, y);

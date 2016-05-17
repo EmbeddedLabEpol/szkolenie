@@ -3,13 +3,13 @@
 
 #include "Block.h" // Base class: Block
 
-class Blocks_Field : private Block
+class Blocks_Field : public Block
 {
 public:
 	Blocks_Field();
 	~Blocks_Field();
 	
-	void create_matrix(const int);
+	void create_matrix(const int, float, float);
 	void set_blocks_state(float, float, float);
 	void draw_field(sf::RenderWindow&);
 	std::vector<Block> get_dawable_blocks();

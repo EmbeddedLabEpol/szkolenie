@@ -1,6 +1,8 @@
 #ifndef MENU_H
 #define MENU_H
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include <string>
 class Menu
 {
 public:
@@ -8,6 +10,7 @@ public:
 	~Menu();
 	bool run_menu(sf::RenderWindow& w);
 	void draw_menu(sf::RenderWindow& w);
+	std::string get_user_name ();
 
 private:
 
@@ -29,7 +32,13 @@ private:
 	sf::Text text_new_game;
 	sf::Text text_set_name;
 	sf::Text text_close;
+	
+	sf::Event event;
+	
+	std::string user_name = "Lolek";
 	void init();
+	void intro(sf::RenderWindow& w);
+	std::string set_name(sf::RenderWindow& w);
 	
 };
 
