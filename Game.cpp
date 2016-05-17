@@ -2,6 +2,8 @@
 #include "Ball.h"
 #include "Block.h"
 #include "Menu.h"
+#include "Paddle.h"
+#include "GameWindow.h"
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -13,6 +15,7 @@ Game::Game()
 Game::~Game()
 {
 }
+
 void Game::generateBlocksFields(std::vector<Block>& blocks, int rows, int cols){
 
 
@@ -38,47 +41,39 @@ int Game::run()
 	generateBlocksFields(blocks, 10 , 2);
 	//Menu menu(WIDTH,HEIGHT);	
 // create the window
-	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Arcanoid - nasza wypas wersja 1.0");
+	GameWindow window(WIDTH, HEIGHT, "Arcanoid - nasza wypas wersja 1.0");
 
 	sf::Clock clock; // starts the clock
 	sf::Time elapsed = clock.getElapsedTime();
-  
+
 	unsigned int r =50;
 
 	sf::CircleShape circle(r);
 	circle.setFillColor(sf::Color::Blue);
 	circle.setOrigin(50, 50);
-	
+
 	float xc = 400;
 	float yc = 300;
-	
+
 	circle.setPosition(xc, yc);
-  
+
 
 	while (window.isOpen()) {
 		// check all the window's events that were triggered since the last iteration of the loop
 		sf::Event event;
 		while (window.pollEvent(event)) {
-			if (event.type == sf::Event::MouseMoved) {
-				std::cout << "new mouse x: " << event.mouseMove.x << std::endl;
-				std::cout << "new mouse y: " << event.mouseMove.y << std::endl;
-				xc = event.mouseMove.x;
-				yc = event.mouseMove.y;
-				circle.setPosition(xc, yc);
-			}
+			
 
 			// "close requested" event: we close the window
 			if (event.type == sf::Event::Closed)
 				window.close();
-				
-			if (event.type == sf::Event::MouseButtonPressed)
-			{
-					
-				for (auto& block : blocks)
-				{
+
+			if (event.type == sf::Event::MouseButtonPressed) {
+
+				for (auto& block : blocks) {
 					if (block.is_colision(xc, yc, r))
-					 block.setPosition(801, 601);
-				
+						block.setPosition(801, 601);
+
 				}
 			}
 		}
@@ -105,16 +100,19 @@ int Game::run()
 			ball.checkColision((sf::RectangleShape)block);
 			
 		}
-		ball.checkWallColision(pad);
-			ball.checkWallColision(w1);
-			ball.checkWallColision(w2);
-			window.draw(w1);
-			window.draw(w2);
-			window.draw(pad);
+			ball.checkWallColision(window.getUpperBorder());
+			ball.checkWallColision(window.getLeftBorder());
+			ball.checkWallColision(window.getRightBorder());
+			ball.checkWallColision(window.getLowerBorder());
+			//window.draw(w1);
+			//window.draw(w2);
+			//window.draw(pad);
 		//window.draw(block.block);
 		 
     
+
 		//menu.draw_menu(window);
+		window.drawGUI();
 		window.display();
 
 	}
