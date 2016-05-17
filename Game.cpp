@@ -67,12 +67,12 @@ int Game::run()
 			clock.restart();
 		}
 
-		for(auto& block : blocks) window.draw(block.block);
+		//for(auto& block : blocks) window.draw(block.block);
 		//window.draw(block.block);
 
 
 		p.draw(window);
-		menu.draw_menu(window);
+		//menu.draw_menu(window);
 		window.display();
 
 	}
