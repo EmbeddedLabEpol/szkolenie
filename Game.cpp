@@ -91,7 +91,6 @@ int Game::run()
 		//window.draw(block.block);
 
 		window.draw(circle);
-		p.draw(window);
 		//menu.draw_menu(window);
 		window.display();
 
