@@ -27,7 +27,7 @@ void Game::generateBlocksFields(std::vector<Block>& blocks, int rows, int cols){
 
 int Game::run()
 {	
-	Ball ball{500,700,30};
+	Ball ball{500,800,30};
 	
 	
 	//Block block;
@@ -36,22 +36,12 @@ int Game::run()
 	//Menu menu(WIDTH,HEIGHT);	
 
 // create the window
-	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Arcanoid - nasza wypas wersja 1.0");
+	GameWindow window(WIDTH, HEIGHT, "Arcanoid - nasza wypas wersja 1.0");
 
 	sf::Clock clock; // starts the clock
 	sf::Time elapsed = clock.getElapsedTime();
   
 	unsigned int r = 30;
-
-	sf::CircleShape circle(r);
-	circle.setFillColor(sf::Color::Blue);
-	circle.setOrigin(30, 30);
-	
-	float xc = 400;
-	float yc = 300;
-	
-	circle.setPosition(xc, yc);
-  
 
 	while (window.isOpen()) {
 		// check all the window's events that were triggered since the last iteration of the loop
@@ -63,19 +53,7 @@ int Game::run()
 			if (event.type == sf::Event::Closed)
 				window.close();
 				
-			if (event.type == sf::Event::MouseButtonPressed)
-			{
-				for(unsigned int r = 0; r < rows_no; ++r)
-					for(unsigned int c = 0; c < columns_no; ++c)
-					{
-						std::cout << blocks[r][c].is_colision(xc, yc, r) << std::endl;
-						
-						if(blocks[r][c].state && blocks[r][c].is_colision(xc, yc, r))
-							blocks[r][c].state = false;				
-					}
-					
-					//blocks[0][0].state = false;
-			}
+			
 		}
 
 
@@ -101,7 +79,7 @@ int Game::run()
 			ball.checkColision((sf::RectangleShape)block);
 			
 		}
-			ball.checkWallColision(window.getUpperBorder());
+			ball.checkWallColision(window.getPlayableField());
 			
 		 
     
