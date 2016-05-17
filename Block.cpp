@@ -2,13 +2,13 @@
 #include <math.h>
 
 Block::Block(float x, float y):
-block(sf::Vector2f(40, 20)),
+sf::RectangleShape(sf::Vector2f(40, 20)),
 state(false)
 {
-	block.setPosition(x, y);
-	block.setFillColor(sf::Color::Blue);
-	block.setOutlineColor(sf::Color::Black);
-	block.setOutlineThickness(5);
+	this->setPosition(x, y);
+	this->setFillColor(sf::Color::Blue);
+	this->setOutlineColor(sf::Color::Black);
+	this->setOutlineThickness(5);
 }
 
 Block::~Block()
@@ -17,10 +17,10 @@ Block::~Block()
 
 bool Block::is_colision(float xc, float yc, float r)
 {
-	const float xb = block.getPosition().x;
-	const float yb = block.getPosition().y;
-	const float l = block.getSize().x;
-	const float h = block.getSize().y;
+	const float xb = this->getPosition().x;
+	const float yb = this->getPosition().y;
+	const float l = this->getSize().x;
+	const float h = this->getSize().y;
 	
 	const bool top = (xc + r) > xb;
 	const bool left = (yc + r) > yb;
@@ -58,13 +58,18 @@ bool Block::is_colision(float xc, float yc, float r)
 		return false;
 }
 
+void Block::set_state(float xc, float yc, float r)
+{
+	state = !is_colision(xc, yc, r);
+}
+
 
 float Block::get_size_x()
 {
-	return block.getSize().x;
+	return this->getSize().x + 5;
 }
 
 float Block::get_size_y()
 {
-	return block.getSize().y;
+	return this->getSize().y + 5;
 }

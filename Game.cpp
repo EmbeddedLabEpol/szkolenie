@@ -39,6 +39,17 @@ int Game::run()
 	sf::Clock clock; // starts the clock
 	sf::Time elapsed = clock.getElapsedTime();
 
+	unsigned int r =50;
+
+	sf::CircleShape circle(r);
+	circle.setFillColor(sf::Color::Blue);
+	circle.setOrigin(50, 50);
+
+	float xc = 400;
+	float yc = 300;
+
+	circle.setPosition(xc, yc);
+
 
 	while (window.isOpen()) {
 		// check all the window's events that were triggered since the last iteration of the loop
@@ -52,11 +63,20 @@ int Game::run()
 			// "close requested" event: we close the window
 			if (event.type == sf::Event::Closed)
 				window.close();
+
+			if (event.type == sf::Event::MouseButtonPressed) {
+
+				for (auto& block : blocks) {
+					if (block.is_colision(xc, yc, r))
+						block.setPosition(801, 601);
+
+				}
+			}
 		}
 
 
 		// clear the window with black color
-		window.clear(sf::Color::Yellow);
+		window.clear(sf::Color::Black);
 
 
 		elapsed = clock.getElapsedTime();
@@ -67,10 +87,10 @@ int Game::run()
 			clock.restart();
 		}
 
-		//for(auto& block : blocks) window.draw(block.block);
+		for(auto& block : blocks) window.draw(block);
 		//window.draw(block.block);
 
-
+		window.draw(circle);
 		p.draw(window);
 		//menu.draw_menu(window);
 		window.display();
