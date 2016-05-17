@@ -52,3 +52,15 @@ void Ball::bounce(int _directionX, int _directionY)
 	directionX = _directionX;
 	directionY = _directionY;
 }
+
+void Ball::checkColision(sf::RectangleShape shape)
+{	
+	bool b = false;
+	sf::FloatRect rbound = shape.getGlobalBounds();
+	b = rbound.intersects(this->getGlobalBounds());
+	
+	if(b) 
+	{
+		this->bounce(-1,1);
+	}
+}
