@@ -27,14 +27,7 @@ void Game::generateBlocksFields(std::vector<Block>& blocks, int rows, int cols){
 int Game::run()
 {	
 	Ball ball{500,700,30};
-	sf::RectangleShape pad{sf::Vector2f(1000,10)};
-	pad.setPosition(0,750);
 	
-	sf::RectangleShape w1{sf::Vector2f(10,1000)};
-	w1.setPosition(5,0);
-	
-	sf::RectangleShape w2{sf::Vector2f(10,1000)};
-	w2.setPosition(1000,0);
 	
 	//Block block;
 	std::vector<Block> blocks;
