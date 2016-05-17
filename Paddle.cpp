@@ -120,8 +120,8 @@ int Paddle::isCollision(sf::CircleShape& ball, sf::RenderWindow& window)
 	    && ballRigthY < leftPaddleY
 	)
 		res = checkPaddleCollisionSide(leftPaddleX, leftMiddlePaddleX, rightMiddlePaddleX, rightPaddleX, ballRigthX);
-	std::cout << res << std::endl;
-	return 0;
+
+	return res;
 
 }
 
