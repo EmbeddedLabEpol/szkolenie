@@ -2,3 +2,5 @@ Release/
 Debug/
 *.mk
 Arcanoid.txt
+Game.h
+Game.cpp

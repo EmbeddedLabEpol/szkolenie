@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Ball.h"
 #include "Block.h"
+#include "Menu.h"
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -27,8 +28,9 @@ int Game::run()
 	
 	//Block block;
 	std::vector<Block> blocks;
-	generateBlocksFields(blocks, 5);
-	// create the window
+	generateBlocksFields(blocks, 5 , 5);
+	Menu menu(WIDTH,HEIGHT);	
+// create the window
 	sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Arcanoid - nasza wypas wersja 1.0");
 
 	sf::Clock clock; // starts the clock
@@ -64,7 +66,9 @@ int Game::run()
 
 		for(auto& block : blocks) window.draw(block.block);
 		//window.draw(block.block);
-		
+		 
+    
+		menu.draw_menu(window);
 		window.display();
 
 	}
