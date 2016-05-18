@@ -61,11 +61,13 @@ void Game::generateBlocksFields(std::vector<Block>& blocks, int rows, int cols)
 int Game::run()
 {
 
-
+	int life = 3;
+	bool life_bool = true;
 	Paddle paddle(WIDTH/2, HEIGHT-50);
 	
 	// create the window
 	GameWindow window(WIDTH, HEIGHT, "Arcanoid - nasza wypas wersja 2.0");
+	window.setMouseCursorVisible(false);
 	Menu menu(WIDTH,HEIGHT);
 	menu.intro(window);
 	float width = window.getPlayableField().width;
@@ -86,15 +88,17 @@ int Game::run()
 	Ball ball {xc, yc, r, 10.0};
 
 beginning:
-	int life = 3;
-	bool life_bool = true;
-	
+	   
+	  life_bool = true;
+	clock_game.restart();
 	b.create_matrix(width, x, y);
 	ball.setPosition(xc,yc);
 	//////////////////////////////////// MENU ///////////////////////////////////////
+	window.setMouseCursorVisible(true);
 	if (menu.run_menu(window)== false) {
 		return 0;
 	}
+	window.setMouseCursorVisible(false);
 	//////////////////////////////////// END MENU ///////////////////////////////////
 
 
@@ -221,6 +225,7 @@ beginning:
 
 		if (b.blocks_no == 0 || life == 0) {
 			b.delete_matrix();
+			life = 4;
 			goto beginning;
 		}
 		 
