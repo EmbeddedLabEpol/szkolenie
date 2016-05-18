@@ -54,17 +54,17 @@ int Game::run()
 	sf::Clock paddleClock;
 	sf::Time elapsed = clock.getElapsedTime();
 
-	unsigned int r = 15;
+	  int r = 15;
 
-	float xc = 440;
-	float yc = 220;
+	float xc = 512;
+	float yc = 700;
 
-	Ball ball {512, 700, 15, 10.0};
+	Ball ball {xc, yc, r, 10.0};
 
 beginning:
 
 	b.create_matrix(width, x, y);
-
+	ball.setPosition(xc,yc);
 	//////////////////////////////////// MENU ///////////////////////////////////////
 	if (menu.run_menu(window)== false) {
 		return 0;
@@ -91,8 +91,9 @@ beginning:
 			}
 			if (event.type == sf::Event::MouseMoved) {
 				float mousePosX = event.mouseMove.x;
-				paddle.movePaddle(mousePosX);
-
+				sf::FloatRect availableField = window.getPlayableField();
+				if(mousePosX > (availableField.left + paddle.getPaddleWidth()/2) && mousePosX < (availableField.left + availableField.width - paddle.getPaddleWidth()/2))
+					paddle.movePaddle(mousePosX);
 			}
 		}
 
