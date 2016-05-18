@@ -6,7 +6,6 @@
 #include "GameWindow.h"
 #include <vector>
 #include <SFML/Graphics.hpp>
-#include <iostream>
 #include <cstdlib>
 #include "Blocks_Field.h"
 
@@ -121,7 +120,6 @@ beginning:
 					{
 						b.blocks[r][c].state = false;
 						b.blocks_no = b.blocks_no - 1;
-						std::cout << b.blocks_no << std::endl;
 					}
 
 		int side = paddle.isCollision(ball);

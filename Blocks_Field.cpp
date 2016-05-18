@@ -1,5 +1,4 @@
 #include "Blocks_Field.h"
-#include <iostream>
 
 Blocks_Field::Blocks_Field()
 {
@@ -69,5 +68,4 @@ void Blocks_Field::delete_matrix()
 //			delete &blocks[r][c];
 	
 	blocks.clear();
-	std::cout << blocks.size() << std::endl;
 }
