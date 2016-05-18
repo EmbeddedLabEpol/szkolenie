@@ -134,14 +134,14 @@ beginning:
 						}
 							
 						if(b.blocks[r][c].up_size){
-							//ball.sizeUp();
+							ball.scale(2,2); //sizeUp();
 							std::cout<< "wieksza"<< std::endl;
 						}
 							
 							
 							
 						if(b.blocks[r][c].down_size){
-							//ball.sizeDown();
+							ball.scale(0.5,0.5); //sizeDown();
 							std::cout<< "mniejsza"<< std::endl;
 						}
 					}
