@@ -34,7 +34,7 @@ GameWindow::GameWindow(int windowWidth,int windowHight, std::string windowName):
 	
 	configText(playerName, sf::Vector2f(50,30));
 	configText(timeText, sf::Vector2f(50,80));	
-	configText(lifesText, sf::Vector2f(450,50));
+	configText(lifesText, sf::Vector2f(550,50));
 }
 
 GameWindow::~GameWindow()
@@ -103,7 +103,7 @@ void GameWindow::drawLifes(int numberOfLifes){
 	
 	for(int i = 0; i < numberOfLifes; i++ )
 	{
-		lifeIcon.setPosition(sf::Vector2f(550 + i*100, 25));
+		lifeIcon.setPosition(sf::Vector2f(650 + i*100, 25));
 		draw(lifeIcon);
 	}
 	
