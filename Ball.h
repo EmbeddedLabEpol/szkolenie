@@ -7,7 +7,7 @@
 
 class Ball : public sf::CircleShape
 {
-  public:
+public:
 	Ball(double x, double y, int r);
 	~Ball();
 	void move();
@@ -15,15 +15,16 @@ class Ball : public sf::CircleShape
 	void slowDown();
 	void bounce(sf::RectangleShape);
 	bool checkColision(sf::RectangleShape);
-	bool checkColision(Block block);
+	bool checkColision(Block &block);
 	void bounceWall(sf::FloatRect);
 	void checkWallColision(sf::FloatRect);
-	
+	void bouncePaddle(int);
+
 private:
 	double speed;
 	int directionX;
 	int directionY;
-	
+
 	double getX();
 	double getY();
 };

@@ -70,7 +70,7 @@ void GameWindow::configText(sf::Text &confText, sf::Vector2f textPosition)
 }
 
 sf::FloatRect GameWindow::getPlayableField()
-{	
+{
 	return sf::FloatRect(upperBorder.getGlobalBounds().left, upperBorder.getGlobalBounds().top+borderSize, upperBorder.getSize().x, leftBorder.getSize().y);
 }
 

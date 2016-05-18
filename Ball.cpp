@@ -4,9 +4,9 @@ Ball::Ball(double x, double y, int r): sf::CircleShape(r), speed(10.0), directio
 {	
 	this->setOrigin(this->getRadius(), this->getRadius());
 	this->setPosition(x, y);
-	this->setFillColor(sf::Color::Blue);
+	this->setFillColor(sf::Color::Green);
 	
-	this->setOutlineThickness(5);
+	this->setOutlineThickness(1);
 	this->setOutlineColor(sf::Color::Red);
 	
 	sf::Texture texture;
@@ -45,6 +45,26 @@ void Ball::slowDown()
 {	
 	if(speed > 0)
 		speed -= 0.1;
+}
+
+void Ball::bouncePaddle(int side)
+{
+	switch(side) {
+	case 1:
+		directionX = -directionX;
+		directionY = -directionY;
+		break;
+	case 2:
+		directionY = -directionY;
+		break;
+	case 3:
+		directionX = -directionX;
+		directionY = -directionY;
+		break;
+	default:
+		break;
+
+	}
 }
 void Ball::bounceWall(sf::FloatRect rect)
 {
@@ -119,12 +139,17 @@ void Ball::checkWallColision(sf::FloatRect rect)
 	}
 }
 
-bool Ball::checkColision(Block block)
+bool Ball::checkColision(Block &block)
 {	
+	//sf::FloatRect rbound = block.getGlobalBounds();
+	//bool b = rbound.intersects(this->getGlobalBounds());
 	bool b = block.is_colision(this->getPosition().x, this->getPosition().y, this->getRadius());
 	if(b) 
 	{
+		std::cout << "colision" << std::endl;
 		this->bounce(block);
+		block.state = false;
+		std::cout<<block.state<<std::endl;
 	}
 	return b;
 }

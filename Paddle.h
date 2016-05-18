@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Ball.h"
 #include <vector>
+#include "GameWindow.h"
 
 class Paddle
 {
@@ -19,11 +20,11 @@ private:
 
 public:
 	Paddle(float, float);
-	void draw(sf::RenderWindow&);
+	void draw(GameWindow&);
 	void movePaddle(float);
 	void setPaddleWidth(float);
 	void setPaddleColor(sf::Color);
-	int isCollision(sf::CircleShape&, sf::RenderWindow&);
+	int isCollision(sf::CircleShape&);
 	~Paddle();
 
 };
