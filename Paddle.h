@@ -31,6 +31,7 @@ public:
 	bool getPaddleCollisionState();
 	void changePaddleSizeUp();
 	void changePaddleSizeDown();
+	sf::Vector2f getPaddlePosition();
 	~Paddle();
 
 };

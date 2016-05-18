@@ -1,6 +1,6 @@
 #include "Ball.h"
 
-Ball::Ball(double x, double y, int r, double s = 10.0): sf::CircleShape(r), speed(s), directionX(-1), directionY(-1)
+Ball::Ball(double x, double y, int r, double s = 20.0): sf::CircleShape(r), speed(s), directionX(-1), directionY(-1)
 {	
 	this->setOrigin(this->getRadius(), this->getRadius());
 	this->setPosition(x, y);
@@ -45,7 +45,7 @@ double Ball::getY()
 
 void Ball::speedUp()
 {	
-	if(speed < 20)
+	if(speed < 40)
 		speed += 5;
 }
 
@@ -57,7 +57,7 @@ void Ball::slowDown()
 
 void Ball::setSpeed(double s)
 {
-	if(s > 0 && s < 20)
+	if(s > 0 && s < 40)
 		this->speed = s;
 }
 

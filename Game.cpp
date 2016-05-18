@@ -16,6 +16,29 @@ Game::Game()
 Game::~Game()
 {
 }
+void Game::pause(GameWindow& window)
+{  sf::Event event;
+	while (true) {
+		window.drawPause();
+		window.display();
+		while (window.pollEvent(event)) {
+
+
+
+			// "close requested" event: we close the window
+			if (event.type == sf::Event::Closed)
+				window.close();
+
+			if (event.type == sf::Event::MouseButtonPressed) {
+
+				if (event.mouseButton.button == sf::Mouse::Right) {
+					std::cout << "pauza"<<std::endl;
+					return;
+				}
+			}
+		}
+	}
+}
 
 void Game::generateBlocksFields(std::vector<Block>& blocks, int rows, int cols)
 {
@@ -54,7 +77,7 @@ int Game::run()
 	sf::Clock paddleClock;
 	sf::Time elapsed = clock.getElapsedTime();
 
-	  int r = 15;
+	int r = 15;
 
 	float xc = 512;
 	float yc = 700;
@@ -85,15 +108,26 @@ beginning:
 				window.close();
 
 			if (event.type == sf::Event::MouseButtonPressed) {
+				if (event.mouseButton.button == sf::Mouse::Left) {
+					ball.setSpeed(10);
+					ball.dead = false;
+				}
 
-
-				//blocks[0][0].state = false;
+				if (event.mouseButton.button == sf::Mouse::Right) {
+					std::cout << "pauza"<<std::endl;
+					pause(window);
+				}
 			}
 			if (event.type == sf::Event::MouseMoved) {
 				float mousePosX = event.mouseMove.x;
 				sf::FloatRect availableField = window.getPlayableField();
 				if(mousePosX > (availableField.left + paddle.getPaddleWidth()/2) && mousePosX < (availableField.left + availableField.width - paddle.getPaddleWidth()/2))
 					paddle.movePaddle(mousePosX);
+			}
+			if(event.type == sf::Event::KeyPressed) {
+				if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) ) {
+
+				}
 			}
 		}
 
@@ -107,7 +141,7 @@ beginning:
 
 		//clock.restart();
 		//}
-		b.set_blocks_state(ball.getPosition().x, ball.getPosition().y, ball.getRadius());
+		//b.set_blocks_state(ball.getPosition().x, ball.getPosition().y, ball.getRadius());
 		ball.move();
 		ball.checkWallColision(window.getPlayableField());
 
@@ -122,27 +156,41 @@ beginning:
 					if(ball.checkColision(b.blocks[r][c])) {
 						b.blocks[r][c].state = false;
 						b.blocks_no = b.blocks_no - 1;
-						
-						if(b.blocks[r][c].up_speed){
+
+						if(b.blocks[r][c].up_speed) {
 							ball.speedUp();
 							std::cout<< "szybcej"<< std::endl;
 						}
-													
-						if(b.blocks[r][c].down_speed){
+
+						if(b.blocks[r][c].down_speed) {
 							ball.slowDown();
 							std::cout<< "wolniej"<< std::endl;
 						}
+ 
 							
 						if(b.blocks[r][c].up_size){
-							ball.scale(2,2); //sizeUp();
+							//ball.scale(2,2); //sizeUp();
+							ball.setRadius(ball.getRadius()*2);
 							std::cout<< "wieksza"<< std::endl;
 						}
 							
 							
 							
 						if(b.blocks[r][c].down_size){
-							ball.scale(0.5,0.5); //sizeDown();
+							//ball.scale(0.5,0.5); //sizeDown();
+ 
+							ball.setRadius(ball.getRadius()*0.5);
 							std::cout<< "mniejsza"<< std::endl;
+						}
+
+						if(b.blocks[r][c].up_paddle_size) {
+							paddle.changePaddleSizeUp();
+							std::cout<< "wieksza paletka"<< std::endl;
+						}
+
+						if(b.blocks[r][c].down_paddle_size) {
+							paddle.changePaddleSizeDown();
+							std::cout<< "mniejsza paletka"<< std::endl;
 						}
 					}
 
@@ -156,8 +204,13 @@ beginning:
 			paddle.setPaddleCollisionState(true);
 			paddleClock.restart();
 		}
-
-		
+ 
+	
+		if(ball.dead)
+		{	
+			ball.setPosition(paddle.getPaddlePosition().x, paddle.getPaddlePosition().y-ball.getRadius());
+ 
+		}
 
 		if (b.blocks_no == 0) {
 			b.delete_matrix();
@@ -169,6 +222,7 @@ beginning:
 		window.draw(ball);
 		paddle.draw(window);
 		window.drawGUI(sf::seconds(90),3,menu.get_user_name());
+
 		window.display();
 
 	}

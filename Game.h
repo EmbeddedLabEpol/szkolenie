@@ -2,6 +2,7 @@
 #define Game_H
 #include <vector>
 #include <Block.h>
+#include "GameWindow.h"
 class Game
 {
 public:
@@ -12,6 +13,8 @@ public:
 private:
 	const int WIDTH  = 1024;
 	const int HEIGHT =  768;
+	
+	void pause(GameWindow& window);
 	
 	
 };
