@@ -135,7 +135,7 @@ beginning:
 			paddleClock.restart();
 		}
 
-
+		
 
 		if (b.blocks_no == 1) {
 			b.delete_matrix();

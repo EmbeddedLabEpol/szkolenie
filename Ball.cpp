@@ -82,11 +82,17 @@ void Ball::bounceWall(sf::FloatRect rect)
 	}
 
 
-	if(((this->getPosition().y + this->getRadius() + 10 > (rect.top + rect.height)) || 
-		(this->getPosition().y - this->getRadius() - 10< rect.top))) 
+	if(this->getPosition().y + this->getRadius() + 10 > (rect.top + rect.height))
 
 	{
 	   directionY = -directionY;
+	}
+	
+	if(this->getPosition().y - this->getRadius() - 10< rect.top)
+	{
+		directionY = -directionY;
+		this->setPosition(512,700);
+		dead = true;
 	}
 
 }
