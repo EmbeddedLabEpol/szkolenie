@@ -35,6 +35,10 @@ GameWindow::GameWindow(int windowWidth,int windowHight, std::string windowName):
 	configText(playerName, sf::Vector2f(50,10));
 	configText(timeText, sf::Vector2f(50,70));	
 	configText(lifesText, sf::Vector2f(580,30));
+	configText(endGameText, sf::Vector2f((windowWidth/2 - 200),windowHight/2-30));
+	configText(winGameText, sf::Vector2f((windowWidth/2 - 200),windowHight/2-30));
+	configText(pauseText, sf::Vector2f((windowWidth/2 - 200),windowHight/2-30));
+	
 }
 
 GameWindow::~GameWindow()
@@ -138,7 +142,10 @@ void GameWindow::configureLifeIcon()
 
 void GameWindow::drawPause()
 {
-	clear(sf::Color::Blue);
+	clear(sf::Color(91,145,200));
 	
+	lifeIcon.setPosition(sf::Vector2f(this->getSize().x/2 - lifeIcon.getSize().x/2, this->getSize().y/2+50));
 	
+	draw(lifeIcon);	
+	draw(pauseText);	
 }

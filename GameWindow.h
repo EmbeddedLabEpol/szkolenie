@@ -24,6 +24,8 @@ public:
 	void setDisplayedUserName(std::string);
 	
 	void drawPause();
+	void drawEndGame();
+	void drawWinGame();
 	
 	sf::FloatRect getPlayableField();
 
@@ -38,7 +40,10 @@ private:
 	sf::Font gameWindowFont;
 	sf::Text timeText;
 	sf::Text playerName;
-	sf::Text lifesText;	
+	sf::Text lifesText;
+	sf::Text pauseText{"Przerwa na bucha...", gameWindowFont, 70};
+	sf::Text endGameText{"Skułeś sie!", gameWindowFont, 70};
+	sf::Text winGameText{"Wygrałeś", gameWindowFont, 70};
 	
 	sf::Texture lifeTexture;
 			
