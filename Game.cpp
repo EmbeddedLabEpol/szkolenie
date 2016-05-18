@@ -91,8 +91,9 @@ beginning:
 			}
 			if (event.type == sf::Event::MouseMoved) {
 				float mousePosX = event.mouseMove.x;
-				paddle.movePaddle(mousePosX);
-
+				sf::FloatRect availableField = window.getPlayableField();
+				if(mousePosX > (availableField.left + paddle.getPaddleWidth()/2) && mousePosX < (availableField.left + availableField.width - paddle.getPaddleWidth()/2))
+					paddle.movePaddle(mousePosX);
 			}
 		}
 
