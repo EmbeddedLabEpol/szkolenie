@@ -17,9 +17,9 @@ void Menu::init()
 	}
 
 
-	new_game_pos =  sf::Vector2f {WIDTH-WIDTH/2.0,HEIGHT-100.};
-	set_name_pos =  sf::Vector2f { WIDTH-WIDTH/2.0,HEIGHT-300.};
-	close_pos =  sf::Vector2f {WIDTH-WIDTH/2.0,HEIGHT-500.};
+	new_game_pos =  sf::Vector2f {static_cast<float>(WIDTH-WIDTH/2),static_cast<float>(HEIGHT-100)};
+	set_name_pos =  sf::Vector2f {static_cast<float> (WIDTH-WIDTH/2),static_cast<float>(HEIGHT-300)};
+	close_pos =  sf::Vector2f {static_cast<float>(WIDTH-WIDTH/2),static_cast<float>(HEIGHT-500)};
 
 	new_game_b.setSize(button_size );
 	set_name_b.setSize(button_size );
@@ -73,10 +73,7 @@ void Menu::init()
 bool Menu::run_menu(sf::RenderWindow& w)
 {
 
-	intro(w);
-
-
-
+	 
 	while (true) {
 		draw_menu(w);
 		w.display();

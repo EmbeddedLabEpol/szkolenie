@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <string>
+#include <cstdio>
 
 constexpr int borderSize = 3;
 constexpr float sideMarginFactor = 0.15;
@@ -14,33 +15,37 @@ constexpr float playableHigthFactor = 0.80;
 class GameWindow : public sf::RenderWindow
 {
 public:
-	const int playableWindowHight = 600;
-	const int playableWindowWidth = 900;
 	
 	GameWindow();
 	GameWindow(int windowWidth, int windowHight, std::string windowName);
 	~GameWindow();
 		
-	void drawGUI(sf::Time gameTime = sf::Time().Zero, int numberOfLifes = 3);
+	void drawGUI(const sf::Time gameTime = sf::Time().Zero, int numberOfLifes = 3, sf::String playerName = "Skuwacz");
 	void setDisplayedUserName(std::string);
 	sf::FloatRect getPlayableField();
-	
-	sf::RectangleShape getUpperBorder(){return upperBorder;}
-	sf::RectangleShape getLowerBorder(){return lowerBorder;}
-	sf::RectangleShape getLeftBorder(){return leftBorder;}
-	sf::RectangleShape getRightBorder(){return rightBorder;}
-	
 
 private:
 	sf::RectangleShape upperBorder;
 	sf::RectangleShape lowerBorder;
 	sf::RectangleShape leftBorder;
 	sf::RectangleShape rightBorder;	
+	
+	sf::Font gameWindowFont;
+	sf::Text timeText;
+	sf::Text playerName;
+	
 			
-	void drawGameTime(sf::Time gameTime);
+	void drawGameTime(const sf::Time &gameTime);
 	void drawLifes(int numberOfLifes = 3);
-	void drawUserName(std::string);
+
 	void setBorder(sf::RectangleShape &border, const sf::Vector2f &_borderSize, const sf::Vector2f &borderPosition, const sf::Color borderColor );
+	void configText(sf::Text &confText, sf::Vector2f textPosition);
+	
+	void drawBorders();
+	void drawPlayerName(const sf::String &playerNameString);
+	
+	sf::String generateTimeString(const sf::Time &gameTime);
+
 	
 };
 

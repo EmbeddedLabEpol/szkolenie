@@ -81,8 +81,10 @@ void Ball::bounceWall(sf::FloatRect rect)
 		directionX = -directionX;
 	}
 
+
 	if(((this->getPosition().y + this->getRadius() + 10 > (rect.top + rect.height)) || 
 		(this->getPosition().y - this->getRadius() - 10< rect.top))) 
+
 	{
 	   directionY = -directionY;
 	}
@@ -90,26 +92,23 @@ void Ball::bounceWall(sf::FloatRect rect)
 }
 void Ball::bounce(sf::RectangleShape shape)
 {	
-	if(this->getPosition().x > shape.getPosition().x) //lece z prawej
+	sf::FloatRect fs = shape.getGlobalBounds();
+	int x1 = fs.left;
+	int x2 = fs.left + fs.width;
+	int y1 = fs.top;
+	int y2 = fs.top + fs.height;
+	
+	//bool poziom = false;
+	//bool pion = false;
+	
+	if(this->getPosition().x > x1 && this->getPosition().x < x2)
 	{
-		if(this->getPosition().y > shape.getPosition().y ) //lece z dolu
-		{
-			directionY = 1;
-		} else	//lece z gory
-		{
-			directionY = -1;
-		}
-		
+		directionY = -directionY;
 	}
-	else // lece z lewej
+		//poziom = true;
+	if(this->getPosition().y > y1 && this->getPosition().y < y2)
 	{
-		if(this->getPosition().y > shape.getPosition().y ) //lece z dolu
-		{
-			directionY = 1;
-		} else	//lece z gory
-		{
-			directionY = -1;
-		}
+		directionX = -directionX;
 	}
 }
 
