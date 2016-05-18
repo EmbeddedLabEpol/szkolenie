@@ -108,7 +108,7 @@ beginning:
 
 		//clock.restart();
 		//}
-		b.set_blocks_state(ball.getPosition().x, ball.getPosition().y, ball.getRadius());
+		//b.set_blocks_state(ball.getPosition().x, ball.getPosition().y, ball.getRadius());
 		ball.move();
 		ball.checkWallColision(window.getPlayableField());
 
