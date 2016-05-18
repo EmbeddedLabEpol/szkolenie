@@ -86,7 +86,8 @@ beginning:
 
 			if (event.type == sf::Event::MouseButtonPressed) {
 
-
+				ball.setSpeed(10);
+				ball.dead = false;
 				//blocks[0][0].state = false;
 			}
 			if (event.type == sf::Event::MouseMoved) {
@@ -135,6 +136,7 @@ beginning:
 							
 						if(b.blocks[r][c].up_size){
 							ball.scale(2,2); //sizeUp();
+							ball.setRadius(ball.getRadius()*2);
 							std::cout<< "wieksza"<< std::endl;
 						}
 							
@@ -142,6 +144,7 @@ beginning:
 							
 						if(b.blocks[r][c].down_size){
 							ball.scale(0.5,0.5); //sizeDown();
+							ball.setRadius(ball.getRadius()*0.5);
 							std::cout<< "mniejsza"<< std::endl;
 						}
 					}
@@ -156,8 +159,11 @@ beginning:
 			paddle.setPaddleCollisionState(true);
 			paddleClock.restart();
 		}
-
-		
+	
+		if(ball.dead)
+		{	
+			ball.setPosition(512,700);
+		}
 
 		if (b.blocks_no == 0) {
 			b.delete_matrix();
