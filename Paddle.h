@@ -10,13 +10,14 @@ class Paddle
 {
 private:
 	float paddleWidth = 100;
-	const float paddleHeight = 20;
+	const float paddleHeight = 10;
 	sf::Color paddleColor = sf::Color::Red;
 	float paddlePositionX, paddlePositionY, radius = paddleHeight/2;
 	sf::CircleShape leftCircle;
 	sf::RectangleShape rectangle;
 	sf::CircleShape rightCircle;
 	int checkPaddleCollisionSide(float, float, float, float, float);
+	bool paddleCollisionState = true;
 
 public:
 	Paddle(float, float);
@@ -24,7 +25,9 @@ public:
 	void movePaddle(float);
 	void setPaddleWidth(float);
 	void setPaddleColor(sf::Color);
-	int isCollision(sf::CircleShape&);
+	int isCollision(sf::CircleShape&, GameWindow&);
+	void setPaddleCollisionState(bool);
+	bool getPaddleCollisionState();
 	~Paddle();
 
 };
