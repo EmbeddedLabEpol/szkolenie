@@ -16,7 +16,7 @@ void Blocks_Field::create_matrix(const int width, float x, float y)
 	Block tmp_b;
 	
 	const unsigned int columns_no = width/tmp_b.get_size_x();
-	const unsigned int rows_no = 3;
+	const unsigned int rows_no = 2;
 	
 	std::vector<Block> tmp_v;
 		
@@ -40,26 +40,32 @@ void Blocks_Field::create_matrix(const int width, float x, float y)
 	int random_row1 = rand() % (rows_no - 1)  + 0;
 	int random_column1 = rand() % (columns_no - 1)  + 0;
 	blocks[random_row1][random_column1].up_speed = true;
+	blocks[random_row1][random_column1].setFillColor(sf::Color::Red);
 	
 	int random_row2 = rand() % (rows_no - 1) + 0;
 	int random_column2 = rand() % (columns_no - 1)  + 0;
 	blocks[random_row2][random_column2].down_speed = true;
+	blocks[random_row2][random_column2].setFillColor(sf::Color::Red);
 	
 	int random_row3 = rand() % (rows_no - 1)  + 0;
 	int random_column3 = rand() % (columns_no - 1)  + 0;
 	blocks[random_row3][random_column3].up_size = true;
+	blocks[random_row3][random_column3].setFillColor(sf::Color::Red);
 	
 	int random_row4 = rand() % (rows_no - 1) + 0;
 	int random_column4 = rand() % (columns_no - 1)  + 0;
 	blocks[random_row4][random_column4].down_size = true;
+	blocks[random_row4][random_column4].setFillColor(sf::Color::Red);
 	
 	int random_row5 = rand() % (rows_no - 1)  + 0;
 	int random_column5 = rand() % (columns_no - 1)  + 0;
 	blocks[random_row5][random_column5].up_paddle_size = true;
+	blocks[random_row5][random_column5].setFillColor(sf::Color::Red);
 	
 	int random_row6 = rand() % (rows_no - 1) + 0;
 	int random_column6 = rand() % (columns_no - 1)  + 0;
 	blocks[random_row6][random_column6].down_paddle_size = true;
+	blocks[random_row6][random_column6].setFillColor(sf::Color::Red);
 }
 
 void Blocks_Field::set_blocks_state(float xc, float yc, float r)
