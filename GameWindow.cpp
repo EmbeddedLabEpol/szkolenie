@@ -26,13 +26,15 @@ GameWindow::GameWindow(int windowWidth,int windowHight, std::string windowName):
 	setBorder( leftBorder, sf::Vector2f(borderSize, borderHight), sf::Vector2f(xPosLeftBorder, yPosLeftBorder), sf::Color::Cyan);
 	setBorder( rightBorder, sf::Vector2f(borderSize,borderHight), sf::Vector2f(xPosRightBorder, yPosRightBorder), sf::Color::Cyan);	
 	
-    if (!gameWindowFont.loadFromFile("../arial.ttf")) {
+    if (!gameWindowFont.loadFromFile("../TimesOldAttic.TTF")) {
 		// error...
 	}
 	
+	configureLifeIcon();
+	
 	configText(playerName, sf::Vector2f(50,30));
 	configText(timeText, sf::Vector2f(50,80));	
-	
+	configText(lifesText, sf::Vector2f(550,50));
 }
 
 GameWindow::~GameWindow()
@@ -96,7 +98,15 @@ void GameWindow::drawGameTime(const sf::Time &gameTime)
 
 void GameWindow::drawLifes(int numberOfLifes){
 	
-
+	lifesText.setString("Lifes: ");
+	draw(lifesText);
+	
+	for(int i = 0; i < numberOfLifes; i++ )
+	{
+		lifeIcon.setPosition(sf::Vector2f(650 + i*100, 25));
+		draw(lifeIcon);
+	}
+	
 }
 
 sf::String GameWindow::generateTimeString(const sf::Time &gameTime)
@@ -113,4 +123,15 @@ sf::String GameWindow::generateTimeString(const sf::Time &gameTime)
 	
 	
 	return sf::String(ptrCharGameTime);	
+}
+
+void GameWindow::configureLifeIcon()
+{		
+	if (!lifeTexture.loadFromFile("../joint.png"))
+	{
+		// error...
+	}
+	lifeIcon.setSize(sf::Vector2f(80,60));
+	
+	lifeIcon.setTexture(&lifeTexture);
 }

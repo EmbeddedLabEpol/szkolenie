@@ -28,12 +28,16 @@ private:
 	sf::RectangleShape upperBorder;
 	sf::RectangleShape lowerBorder;
 	sf::RectangleShape leftBorder;
-	sf::RectangleShape rightBorder;	
+	sf::RectangleShape rightBorder;
+
+	sf::RectangleShape lifeIcon;
 	
 	sf::Font gameWindowFont;
 	sf::Text timeText;
 	sf::Text playerName;
+	sf::Text lifesText;	
 	
+	sf::Texture lifeTexture;
 			
 	void drawGameTime(const sf::Time &gameTime);
 	void drawLifes(int numberOfLifes = 3);
@@ -43,6 +47,8 @@ private:
 	
 	void drawBorders();
 	void drawPlayerName(const sf::String &playerNameString);
+	
+	void configureLifeIcon();
 	
 	sf::String generateTimeString(const sf::Time &gameTime);
 
