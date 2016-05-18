@@ -119,3 +119,11 @@ void Blocks_Field::delete_matrix()
 	
 	blocks.clear();
 }
+
+void Blocks_Field::set_circuit()
+{
+	for(unsigned int r = 0; r < blocks.size(); ++r)
+		for(unsigned int c = 0; c < blocks[r].size(); ++c)
+			if((r == 0) || (c == 0) || (r == blocks.size()-1) || (c == blocks[r].size()-1)
+				blocks[r][c].circuit = true;
+}

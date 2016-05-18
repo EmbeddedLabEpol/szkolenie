@@ -15,6 +15,7 @@ public:
 	std::vector<Block> get_dawable_blocks();
 	int blocks_no;
 	void delete_matrix();
+	void set_circuit();
 //private:
 	std::vector<std::vector<Block>> blocks;
 

@@ -16,6 +16,7 @@ public:
 
 	//sf::RectangleShape block;
 	bool state;
+	bool circuit = false;
 	
 	bool up_speed = false;
 	bool down_speed = false;
