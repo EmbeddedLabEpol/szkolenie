@@ -42,6 +42,11 @@ void Paddle::setPaddleWidth(float width)
 	paddleWidth = width;
 }
 
+float Paddle::getPaddleWidth()
+{
+	return paddleWidth;
+}
+
 int Paddle::isCollision(sf::CircleShape& ball)
 {
 	float ballLeftX = ball.getPosition().x - ball.getRadius();
@@ -60,45 +65,34 @@ int Paddle::isCollision(sf::CircleShape& ball)
 	float leftMiddlePaddleY = leftCircle.getPosition().y - leftCircle.getRadius();
 
 	float rightMiddlePaddleX = rightCircle.getPosition().x;
-	float rightMiddlePaddleY = rightCircle.getPosition().y - rightCircle.getRadius();
 
 	float rightPaddleX = rightCircle.getPosition().x + rightCircle.getRadius();
-	float rightPaddleY = rightCircle.getPosition().y;
 
+	int offset = 20;
 	int res = 0;
 	if(
 	    ballBottomX > leftPaddleX
 	    && ballBottomX < rightPaddleX
 	    && ballBottomY > leftMiddlePaddleY
-	    && ballBottomY < leftPaddleY
+	    && ballBottomY < leftPaddleY + offset
 	) {
-
 		res = checkPaddleCollisionSide(leftPaddleX, leftMiddlePaddleX, rightMiddlePaddleX, rightPaddleX, ballBottomX);
-		std::cout << "Ball bottom" << std::endl;
-		std::cout << res << std::endl;
-	}
-
-
-	else if
+	} else if
 	(
 	    ballLeftX > leftPaddleX
 	    && ballLeftX < rightPaddleX
 	    && ballLeftY > leftMiddlePaddleY
-	    && ballLeftY < leftPaddleY
+	    && ballLeftY < leftPaddleY + offset
 	) {
 		res = checkPaddleCollisionSide(leftPaddleX, leftMiddlePaddleX, rightMiddlePaddleX, rightPaddleX, ballLeftX);
-		std::cout << "Ball left" <<  std::endl;
-		std::cout << res << std::endl;
 	} else if
 	(
 	    ballRigthX > leftPaddleX
 	    && ballRigthX < rightPaddleX
 	    && ballRigthY > leftMiddlePaddleY
-	    && ballRigthY < leftPaddleY
+	    && ballRigthY < leftPaddleY + offset
 	) {
 		res = checkPaddleCollisionSide(leftPaddleX, leftMiddlePaddleX, rightMiddlePaddleX, rightPaddleX, ballRigthX);
-		std::cout << "Ball right" << std::endl;
-		std::cout << res << std::endl;
 	}
 
 	return res;
@@ -107,6 +101,8 @@ int Paddle::isCollision(sf::CircleShape& ball)
 
 int Paddle::checkPaddleCollisionSide(float xA, float xB, float xC, float xD, float ballPointX)
 {
+	xB += 10;
+	xC -= 10;
 	if(ballPointX >= xA && ballPointX < xB)
 		return 1;
 	if(ballPointX >= xB && ballPointX <= xC)
@@ -115,6 +111,16 @@ int Paddle::checkPaddleCollisionSide(float xA, float xB, float xC, float xD, flo
 		return 3;
 	return 0;
 
+}
+
+void Paddle::setPaddleCollisionState(bool state)
+{
+	paddleCollisionState = state;
+}
+
+bool Paddle::getPaddleCollisionState()
+{
+	return paddleCollisionState;
 }
 Paddle::~Paddle()
 {
