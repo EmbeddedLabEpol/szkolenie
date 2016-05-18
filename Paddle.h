@@ -18,7 +18,6 @@ private:
 	sf::CircleShape rightCircle;
 	int checkPaddleCollisionSide(float, float, float, float, float);
 	bool paddleCollisionState = true;
-	sf::RectangleShape bullet;
 
 public:
 	Paddle(float, float);
