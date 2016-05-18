@@ -10,6 +10,7 @@ public:
 	~Menu();
 	bool run_menu(sf::RenderWindow& w);
 	void draw_menu(sf::RenderWindow& w);
+	void intro(sf::RenderWindow& w);
 	std::string get_user_name ();
 
 private:
@@ -37,7 +38,7 @@ private:
 	
 	std::string user_name = "Lolek";
 	void init();
-	void intro(sf::RenderWindow& w);
+	 
 	std::string set_name(sf::RenderWindow& w);
 	
 };
