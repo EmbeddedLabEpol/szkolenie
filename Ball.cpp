@@ -9,9 +9,9 @@ Ball::Ball(double x, double y, int r, double s = 10.0): sf::CircleShape(r), spee
 	this->setOutlineThickness(1);
 	this->setOutlineColor(sf::Color::Red);
 	
-	sf::Texture texture;
-	texture.loadFromFile("../ruda.png");
-	this->setTexture(&texture);
+	//sf::Texture texture;
+	//texture.loadFromFile("../ruda.png");
+	//setTexture(&texture);
 }
 
 Ball::~Ball()
