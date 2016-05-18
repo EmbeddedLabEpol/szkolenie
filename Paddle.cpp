@@ -134,6 +134,11 @@ void Paddle::changePaddleSizeDown()
 	if(paddleWidth >= 10)
 		paddleWidth *= 0.5f;
 }
+
+sf::Vector2f Paddle::getPaddlePosition()
+{
+	return rectangle.getPosition();
+}
 Paddle::~Paddle()
 {
 }
