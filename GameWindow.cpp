@@ -149,3 +149,23 @@ void GameWindow::drawPause()
 	draw(lifeIcon);	
 	draw(pauseText);	
 }
+
+void GameWindow::drawEndGame()
+{
+	clear(sf::Color(153,0,0));
+	
+	lifeIcon.setPosition(sf::Vector2f(this->getSize().x/2 - lifeIcon.getSize().x/2, this->getSize().y/2+50));
+	
+	draw(lifeIcon);	
+	draw(endGameText);	
+}
+
+void GameWindow::drawWinGame()
+{
+	clear(sf::Color(0,184,0));
+	
+	lifeIcon.setPosition(sf::Vector2f(this->getSize().x/2 - lifeIcon.getSize().x/2, this->getSize().y/2+50));
+	
+	draw(lifeIcon);	
+	draw(winGameText);	
+}
