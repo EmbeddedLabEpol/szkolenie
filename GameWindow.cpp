@@ -120,7 +120,7 @@ sf::String GameWindow::generateTimeString(const sf::Time &gameTime)
 	char charGameTime[6] = "\0";
 	char *ptrCharGameTime = charGameTime;	
 	
-	if( int(gameTime.asSeconds())%60 > 0)
+	if( int(gameTime.asSeconds())%60 >= 0)
 		minutes = int (gameTime.asSeconds()/60);
 	seconds = gameTime.asSeconds() - minutes*60;
 	sprintf(ptrCharGameTime, "%02d:%02d", minutes, seconds);
