@@ -37,51 +37,40 @@ void Game::generateBlocksFields(std::vector<Block>& blocks, int rows, int cols)
 
 int Game::run()
 {
-
-	//Block block;
+	Menu menu(WIDTH,HEIGHT);
+	
 	Paddle paddle(WIDTH/2, HEIGHT-50);
-	std::vector<Block> blocks;
-	generateBlocksFields(blocks, 5 , 5);
-
-	//std::vector<std::vector<Block>> blocks;
-
-
-
-// create the window
+	
+	// create the window
 	GameWindow window(WIDTH, HEIGHT, "Arcanoid - nasza wypas wersja 2.0");
 
 	float width = window.getPlayableField().width;
 	float x = window.getPlayableField().left;
 	float y = window.getPlayableField().top;
-
+	
 	Blocks_Field b;
+	
+	sf::Clock clock; // starts the clock
+	sf::Time elapsed = clock.getElapsedTime();
+	
+	unsigned int r = 15;
+
+	float xc = 440;
+	float yc = 220;
+
+	Ball ball {xc, yc, r};
+	
+beginning:
+
 	b.create_matrix(width, x, y);
 
 	//////////////////////////////////// MENU ///////////////////////////////////////
-	Menu menu(WIDTH,HEIGHT);
 	if (menu.run_menu(window)== false) {
 		return 0;
 	}
 	//////////////////////////////////// END MENU ///////////////////////////////////
 
 
-	sf::Clock clock; // starts the clock
-	sf::Time elapsed = clock.getElapsedTime();
-
-
-	unsigned int r = 15;
-
-
-
-	float xc = 440;
-	float yc = 220;
-
-
-
-
-	Ball ball {xc, yc, r};
-
-	//b.draw_field(window);
 
 	while (window.isOpen()) {
 		// check all the window's events that were triggered since the last iteration of the loop
@@ -106,7 +95,6 @@ int Game::run()
 			}
 		}
 
-
 		// clear the window with black color
 		window.clear(sf::Color::Black);
 		elapsed = clock.getElapsedTime();
@@ -129,10 +117,23 @@ int Game::run()
 			for(unsigned int c = 0; c < b.blocks[r].size(); ++c)
 				if(b.blocks[r][c].state)
 					if(ball.checkColision(b.blocks[r][c]))
+					{
 						b.blocks[r][c].state = false;
+						b.blocks_no = b.blocks_no - 1;
+						std::cout << b.blocks_no << std::endl;
+					}
 
 		int side = paddle.isCollision(ball);
 		ball.bouncePaddle(side);
+		
+		
+		
+		if (b.blocks_no == 1)
+		{
+			b.delete_matrix();
+			goto beginning;
+		}
+		
 		b.draw_field(window);
 
 		window.draw(ball);

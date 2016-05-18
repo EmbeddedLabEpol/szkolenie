@@ -77,7 +77,7 @@ void Ball::bounceWall(sf::FloatRect rect)
 	}
 
 	/* check if ball's location at top or bottom of screen,if true reverse ball's y heading */
-	std::cout << rect.top << std::endl;
+	//std::cout << rect.top << std::endl;
 	if(((this->getPosition().y + this->getRadius() > (rect.top + rect.height)) || 
 		(this->getPosition().y - this->getRadius() < rect.top))) 
 	{
