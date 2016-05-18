@@ -1,6 +1,6 @@
 #include "Ball.h"
 
-Ball::Ball(double x, double y, int r): sf::CircleShape(r), speed(10.0), directionX(-1), directionY(-1)
+Ball::Ball(double x, double y, int r, double s = 10.0): sf::CircleShape(r), speed(s), directionX(-1), directionY(-1)
 {	
 	this->setOrigin(this->getRadius(), this->getRadius());
 	this->setPosition(x, y);
@@ -37,14 +37,20 @@ double Ball::getY()
 
 void Ball::speedUp()
 {	
-	if(speed < 2)
-		speed += 0.1;
+	if(speed < 20)
+		speed += 1;
 }
 
 void Ball::slowDown()
 {	
 	if(speed > 0)
-		speed -= 0.1;
+		speed -= 1;
+}
+
+void Ball::setSpeed(double s)
+{
+	if(s > 0 && s < 20)
+		this->speed = s;
 }
 
 void Ball::bouncePaddle(int side)
@@ -69,17 +75,14 @@ void Ball::bouncePaddle(int side)
 void Ball::bounceWall(sf::FloatRect rect)
 {
 	
-	/* if ball at most right of screen then reverse ball's x heading */
-	if(((this->getPosition().x + this->getRadius() > (rect.left + rect.width)) || 
-		(this->getPosition().x - this->getRadius() < rect.left)))
+	if(((this->getPosition().x + this->getRadius() + 10 > (rect.left + rect.width)) || 
+		(this->getPosition().x - this->getRadius()  -10 < rect.left)))
 	{
 		directionX = -directionX;
 	}
 
-	/* check if ball's location at top or bottom of screen,if true reverse ball's y heading */
-	std::cout << rect.top << std::endl;
-	if(((this->getPosition().y + this->getRadius() > (rect.top + rect.height)) || 
-		(this->getPosition().y - this->getRadius() < rect.top))) 
+	if(((this->getPosition().y + this->getRadius() + 10 > (rect.top + rect.height)) || 
+		(this->getPosition().y - this->getRadius() - 10< rect.top))) 
 	{
 	   directionY = -directionY;
 	}
@@ -108,9 +111,6 @@ void Ball::bounce(sf::RectangleShape shape)
 			directionY = -1;
 		}
 	}
-	
-	//directionX = _directionX;
-	//directionY = _directionY;
 }
 
 bool Ball::checkColision(sf::RectangleShape shape)
