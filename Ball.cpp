@@ -46,6 +46,26 @@ void Ball::slowDown()
 	if(speed > 0)
 		speed -= 0.1;
 }
+
+void Ball::bouncePaddle(int side)
+{
+	switch(side) {
+	case 1:
+		directionX = -directionX;
+		directionY = -directionY;
+		break;
+	case 2:
+		directionY = -directionY;
+		break;
+	case 3:
+		directionX = -directionX;
+		directionY = -directionY;
+		break;
+	default:
+		break;
+
+	}
+}
 void Ball::bounceWall(sf::FloatRect rect)
 {
 	
