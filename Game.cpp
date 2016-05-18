@@ -54,12 +54,12 @@ int Game::run()
 	sf::Clock paddleClock;
 	sf::Time elapsed = clock.getElapsedTime();
 
-	unsigned int r = 15;
+	  int r = 15;
 
 	float xc = 512;
 	float yc = 700;
 
-	Ball ball {xc, yc, 15, 10.0};
+	Ball ball {xc, yc, r, 10.0};
 
 beginning:
 
