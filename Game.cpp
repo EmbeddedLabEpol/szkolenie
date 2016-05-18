@@ -122,6 +122,28 @@ beginning:
 					if(ball.checkColision(b.blocks[r][c])) {
 						b.blocks[r][c].state = false;
 						b.blocks_no = b.blocks_no - 1;
+						
+						if(b.blocks[r][c].up_speed){
+							ball.speedUp();
+							std::cout<< "szybcej"<< std::endl;
+						}
+													
+						if(b.blocks[r][c].down_speed){
+							ball.slowDown();
+							std::cout<< "wolniej"<< std::endl;
+						}
+							
+						if(b.blocks[r][c].up_size){
+							ball.scale(2,2); //sizeUp();
+							std::cout<< "wieksza"<< std::endl;
+						}
+							
+							
+							
+						if(b.blocks[r][c].down_size){
+							ball.scale(0.5,0.5); //sizeDown();
+							std::cout<< "mniejsza"<< std::endl;
+						}
 					}
 
 		if(paddle.getPaddleCollisionState()) {
@@ -135,9 +157,9 @@ beginning:
 			paddleClock.restart();
 		}
 
+		
 
-
-		if (b.blocks_no == 1) {
+		if (b.blocks_no == 0) {
 			b.delete_matrix();
 			goto beginning;
 		}
@@ -146,7 +168,7 @@ beginning:
 
 		window.draw(ball);
 		paddle.draw(window);
-		window.drawGUI(sf::seconds(90),5,menu.get_user_name());
+		window.drawGUI(sf::seconds(90),3,menu.get_user_name());
 		window.display();
 
 	}

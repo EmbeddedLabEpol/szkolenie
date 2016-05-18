@@ -20,6 +20,8 @@ public:
 	void checkWallColision(sf::FloatRect);
 	void bouncePaddle(int);
 	void setSpeed(double);
+	
+	bool dead = false;
 
 private:
 	double speed;

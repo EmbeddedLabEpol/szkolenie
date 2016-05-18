@@ -9,9 +9,17 @@ Ball::Ball(double x, double y, int r, double s = 10.0): sf::CircleShape(r), spee
 	this->setOutlineThickness(1);
 	this->setOutlineColor(sf::Color::Red);
 	
-	sf::Texture texture;
-	texture.loadFromFile("../ruda.png");
-	this->setTexture(&texture);
+	//sf::Texture texture;
+	//texture.loadFromFile("../ruda.png");
+	//setTexture(&texture);
+	/*f::Texture lifeTexture;
+	if (!lifeTexture.loadFromFile("../joint.png"))
+	{
+		// error...
+	}
+	//lifeIcon.setSize(sf::Vector2f(80,60));
+	
+	this->setTexture(&lifeTexture);*/
 }
 
 Ball::~Ball()
@@ -38,13 +46,13 @@ double Ball::getY()
 void Ball::speedUp()
 {	
 	if(speed < 20)
-		speed += 1;
+		speed += 5;
 }
 
 void Ball::slowDown()
 {	
 	if(speed > 0)
-		speed -= 1;
+		speed -= 5;
 }
 
 void Ball::setSpeed(double s)
@@ -82,11 +90,18 @@ void Ball::bounceWall(sf::FloatRect rect)
 	}
 
 
-	if(((this->getPosition().y + this->getRadius() + 10 > (rect.top + rect.height)) || 
-		(this->getPosition().y - this->getRadius() - 10< rect.top))) 
+	if(this->getPosition().y + this->getRadius() + 10 > (rect.top + rect.height))
 
 	{
 	   directionY = -directionY;
+	   this->setPosition(512,700);
+		dead = true;
+	}
+	
+	if(this->getPosition().y - this->getRadius() - 10< rect.top)
+	{
+		directionY = -directionY;
+		
 	}
 
 }
