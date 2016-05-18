@@ -144,6 +144,16 @@ beginning:
 							ball.scale(0.5,0.5); //sizeDown();
 							std::cout<< "mniejsza"<< std::endl;
 						}
+						
+						if(b.blocks[r][c].up_paddle_size){
+							paddle.changePaddleSizeUp();
+							std::cout<< "wieksza paletka"<< std::endl;
+						}
+						
+						if(b.blocks[r][c].down_paddle_size){
+							paddle.changePaddleSizeDown();
+							std::cout<< "mniejsza paletka"<< std::endl;
+						}
 					}
 
 		if(paddle.getPaddleCollisionState()) {

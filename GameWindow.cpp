@@ -32,9 +32,9 @@ GameWindow::GameWindow(int windowWidth,int windowHight, std::string windowName):
 	
 	configureLifeIcon();
 	
-	configText(playerName, sf::Vector2f(50,30));
-	configText(timeText, sf::Vector2f(50,80));	
-	configText(lifesText, sf::Vector2f(550,50));
+	configText(playerName, sf::Vector2f(50,10));
+	configText(timeText, sf::Vector2f(50,70));	
+	configText(lifesText, sf::Vector2f(580,30));
 }
 
 GameWindow::~GameWindow()
@@ -60,7 +60,7 @@ void GameWindow::configText(sf::Text &confText, sf::Vector2f textPosition)
 	confText.setFont(gameWindowFont); // font is a sf::Font	
 
 	// set the character size
-	confText.setCharacterSize(24); // in pixels, not points!    
+	confText.setCharacterSize(58); // in pixels, not points!    
 	// set the color
 	confText.setColor(sf::Color::Yellow);
 
@@ -103,7 +103,7 @@ void GameWindow::drawLifes(int numberOfLifes){
 	
 	for(int i = 0; i < numberOfLifes; i++ )
 	{
-		lifeIcon.setPosition(sf::Vector2f(650 + i*100, 25));
+		lifeIcon.setPosition(sf::Vector2f(730 + i*100, 25));
 		draw(lifeIcon);
 	}
 	
@@ -134,4 +134,11 @@ void GameWindow::configureLifeIcon()
 	lifeIcon.setSize(sf::Vector2f(80,60));
 	
 	lifeIcon.setTexture(&lifeTexture);
+}
+
+void GameWindow::drawPause()
+{
+	clear(sf::Color::Blue);
+	
+	
 }

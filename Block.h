@@ -21,6 +21,8 @@ public:
 	bool down_speed = false;
 	bool up_size = false;
 	bool down_size = false;
+	bool up_paddle_size = false;
+	bool down_paddle_size = false;
 };
 
 #endif // BLOCK_H
