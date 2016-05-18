@@ -36,13 +36,14 @@ void Game::generateBlocksFields(std::vector<Block>& blocks, int rows, int cols)
 
 int Game::run()
 {
-	Menu menu(WIDTH,HEIGHT);
+	
 	
 	Paddle paddle(WIDTH/2, HEIGHT-50);
 	
 	// create the window
 	GameWindow window(WIDTH, HEIGHT, "Arcanoid - nasza wypas wersja 2.0");
-
+	Menu menu(WIDTH,HEIGHT);
+	menu.intro(window);
 	float width = window.getPlayableField().width;
 	float x = window.getPlayableField().left;
 	float y = window.getPlayableField().top;
@@ -137,7 +138,7 @@ beginning:
 
 		window.draw(ball);
 		paddle.draw(window);
-		window.drawGUI();
+		window.drawGUI(sf::seconds(90),5,menu.get_user_name());
 		window.display();
 
 	}

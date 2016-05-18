@@ -73,10 +73,7 @@ void Menu::init()
 bool Menu::run_menu(sf::RenderWindow& w)
 {
 
-	intro(w);
-
-
-
+	 
 	while (true) {
 		draw_menu(w);
 		w.display();
