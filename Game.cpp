@@ -124,6 +124,11 @@ beginning:
 				if(mousePosX > (availableField.left + paddle.getPaddleWidth()/2) && mousePosX < (availableField.left + availableField.width - paddle.getPaddleWidth()/2))
 					paddle.movePaddle(mousePosX);
 			}
+			if(event.type == sf::Event::KeyPressed) {
+				if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) ) {
+
+				}
+			}
 		}
 
 
@@ -161,17 +166,19 @@ beginning:
 							ball.slowDown();
 							std::cout<< "wolniej"<< std::endl;
 						}
-
-						if(b.blocks[r][c].up_size) {
-							ball.scale(2,2); //sizeUp();
+ 
+							
+						if(b.blocks[r][c].up_size){
+							//ball.scale(2,2); //sizeUp();
 							ball.setRadius(ball.getRadius()*2);
 							std::cout<< "wieksza"<< std::endl;
 						}
-
-
-
-						if(b.blocks[r][c].down_size) {
-							ball.scale(0.5,0.5); //sizeDown();
+							
+							
+							
+						if(b.blocks[r][c].down_size){
+							//ball.scale(0.5,0.5); //sizeDown();
+ 
 							ball.setRadius(ball.getRadius()*0.5);
 							std::cout<< "mniejsza"<< std::endl;
 						}
@@ -197,9 +204,12 @@ beginning:
 			paddle.setPaddleCollisionState(true);
 			paddleClock.restart();
 		}
-
-		if(ball.dead) {
-			ball.setPosition(512,700);
+ 
+	
+		if(ball.dead)
+		{	
+			ball.setPosition(paddle.getPaddlePosition().x, paddle.getPaddlePosition().y-ball.getRadius());
+ 
 		}
 
 		if (b.blocks_no == 0) {

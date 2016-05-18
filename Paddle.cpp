@@ -27,6 +27,7 @@ void Paddle::draw(GameWindow& window)
 
 void Paddle::movePaddle(float posX)
 {
+	paddlePositionX = posX;
 	rectangle.setPosition(posX, paddlePositionY);
 	leftCircle.setPosition(posX-paddleWidth/2, paddlePositionY);
 	rightCircle.setPosition(posX + paddleWidth/2, paddlePositionY);
@@ -127,13 +128,29 @@ void Paddle::changePaddleSizeUp()
 {
 	if(paddleWidth <= 175)
 		paddleWidth *= 1.5f;
+
+	leftCircle.setPosition(paddlePositionX-paddleWidth/2, paddlePositionY);
+	rightCircle.setPosition(paddlePositionX+paddleWidth/2, paddlePositionY);
+	rectangle.setSize( {paddleWidth, paddleHeight});
+	rectangle.setOrigin(paddleWidth/2, paddleHeight/2);
 }
 
 void Paddle::changePaddleSizeDown()
 {
 	if(paddleWidth >= 10)
 		paddleWidth *= 0.5f;
+
+	leftCircle.setPosition(paddlePositionX-paddleWidth/2, paddlePositionY);
+	rightCircle.setPosition(paddlePositionX+paddleWidth/2, paddlePositionY);
+	rectangle.setSize( {paddleWidth, paddleHeight});
+	rectangle.setOrigin(paddleWidth/2, paddleHeight/2);
 }
+
+sf::Vector2f Paddle::getPaddlePosition()
+{
+	return rectangle.getPosition();
+}
+
 Paddle::~Paddle()
 {
 }
