@@ -1,6 +1,6 @@
 #include "Ball.h"
 
-Ball::Ball(double x, double y, int r): sf::CircleShape(r), speed(10.0), directionX(-1), directionY(-1)
+Ball::Ball(double x, double y, int r, double s = 10.0): sf::CircleShape(r), speed(s), directionX(-1), directionY(-1)
 {	
 	this->setOrigin(this->getRadius(), this->getRadius());
 	this->setPosition(x, y);
@@ -37,14 +37,20 @@ double Ball::getY()
 
 void Ball::speedUp()
 {	
-	if(speed < 2)
-		speed += 0.1;
+	if(speed < 20)
+		speed += 1;
 }
 
 void Ball::slowDown()
 {	
 	if(speed > 0)
-		speed -= 0.1;
+		speed -= 1;
+}
+
+void Ball::setSpeed(double s)
+{
+	if(s > 0 && s < 20)
+		this->speed = s;
 }
 
 void Ball::bouncePaddle(int side)
@@ -69,17 +75,16 @@ void Ball::bouncePaddle(int side)
 void Ball::bounceWall(sf::FloatRect rect)
 {
 	
-	/* if ball at most right of screen then reverse ball's x heading */
-	if(((this->getPosition().x + this->getRadius() > (rect.left + rect.width)) || 
-		(this->getPosition().x - this->getRadius() < rect.left)))
+	if(((this->getPosition().x + this->getRadius() + 10 > (rect.left + rect.width)) || 
+		(this->getPosition().x - this->getRadius()  -10 < rect.left)))
 	{
 		directionX = -directionX;
 	}
 
-	/* check if ball's location at top or bottom of screen,if true reverse ball's y heading */
-	//std::cout << rect.top << std::endl;
-	if(((this->getPosition().y + this->getRadius() > (rect.top + rect.height)) || 
-		(this->getPosition().y - this->getRadius() < rect.top))) 
+
+	if(((this->getPosition().y + this->getRadius() + 10 > (rect.top + rect.height)) || 
+		(this->getPosition().y - this->getRadius() - 10< rect.top))) 
+
 	{
 	   directionY = -directionY;
 	}
@@ -87,30 +92,24 @@ void Ball::bounceWall(sf::FloatRect rect)
 }
 void Ball::bounce(sf::RectangleShape shape)
 {	
-	if(this->getPosition().x > shape.getPosition().x) //lece z prawej
-	{
-		if(this->getPosition().y > shape.getPosition().y ) //lece z dolu
-		{
-			directionY = 1;
-		} else	//lece z gory
-		{
-			directionY = -1;
-		}
-		
-	}
-	else // lece z lewej
-	{
-		if(this->getPosition().y > shape.getPosition().y ) //lece z dolu
-		{
-			directionY = 1;
-		} else	//lece z gory
-		{
-			directionY = -1;
-		}
-	}
+	sf::FloatRect fs = shape.getGlobalBounds();
+	int x1 = fs.left;
+	int x2 = fs.left + fs.width;
+	int y1 = fs.top;
+	int y2 = fs.top + fs.height;
 	
-	//directionX = _directionX;
-	//directionY = _directionY;
+	//bool poziom = false;
+	//bool pion = false;
+	
+	if(this->getPosition().x > x1 && this->getPosition().x < x2)
+	{
+		directionY = -directionY;
+	}
+		//poziom = true;
+	if(this->getPosition().y > y1 && this->getPosition().y < y2)
+	{
+		directionX = -directionX;
+	}
 }
 
 bool Ball::checkColision(sf::RectangleShape shape)

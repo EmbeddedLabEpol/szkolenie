@@ -59,7 +59,7 @@ int Game::run()
 	float xc = 440;
 	float yc = 220;
 
-	Ball ball {xc, yc, r};
+	Ball ball {512, 700, 15, 10.0};
 
 beginning:
 
