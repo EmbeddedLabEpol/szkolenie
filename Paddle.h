@@ -25,7 +25,7 @@ public:
 	void movePaddle(float);
 	void setPaddleWidth(float);
 	void setPaddleColor(sf::Color);
-	int isCollision(sf::CircleShape&, GameWindow&);
+	int isCollision(sf::CircleShape&);
 	void setPaddleCollisionState(bool);
 	bool getPaddleCollisionState();
 	~Paddle();

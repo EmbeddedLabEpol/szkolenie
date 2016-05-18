@@ -1,7 +1,6 @@
 #include "GameWindow.h"
 #include <iostream>
 
-
 GameWindow::GameWindow()
 {
 	
@@ -27,19 +26,25 @@ GameWindow::GameWindow(int windowWidth,int windowHight, std::string windowName):
 	setBorder( leftBorder, sf::Vector2f(borderSize, borderHight), sf::Vector2f(xPosLeftBorder, yPosLeftBorder), sf::Color::Cyan);
 	setBorder( rightBorder, sf::Vector2f(borderSize,borderHight), sf::Vector2f(xPosRightBorder, yPosRightBorder), sf::Color::Cyan);	
 	
+    if (!gameWindowFont.loadFromFile("../arial.ttf")) {
+		// error...
+	}
+	
+	configText(playerName, sf::Vector2f(50,30));
+	configText(timeText, sf::Vector2f(50,80));	
+	
 }
 
 GameWindow::~GameWindow()
 {
 }
 
-void GameWindow::drawGUI(sf::Time gameTime, int numberOfLifes )
+void GameWindow::drawGUI(const sf::Time gameTime, int numberOfLifes, sf::String playerNameString )
 {
-	this->draw(upperBorder);
-	this->draw(lowerBorder);
-	this->draw(leftBorder);
-	this->draw(rightBorder);
-	
+	drawBorders();
+	drawPlayerName(playerNameString);
+	drawGameTime(gameTime);
+	drawLifes(numberOfLifes);	
 }
 
 void GameWindow::setBorder(sf::RectangleShape &border, const sf::Vector2f &_borderSize, const sf::Vector2f &borderPosition, const sf::Color borderColor){
@@ -47,10 +52,65 @@ void GameWindow::setBorder(sf::RectangleShape &border, const sf::Vector2f &_bord
 	border.setPosition(borderPosition.x, borderPosition.y);
 	border.setFillColor(borderColor);
 }
+void GameWindow::configText(sf::Text &confText, sf::Vector2f textPosition)
+{
+	// select the font
+	confText.setFont(gameWindowFont); // font is a sf::Font	
+
+	// set the character size
+	confText.setCharacterSize(24); // in pixels, not points!    
+	// set the color
+	confText.setColor(sf::Color::Yellow);
+
+	// set the text style
+	confText.setStyle(sf::Text::Bold | sf::Text::Regular);
+    
+	confText.setOrigin(0,0);
+	confText.setPosition(textPosition);
+}
 
 sf::FloatRect GameWindow::getPlayableField()
 {
-	//std::cout<< upperBorder.getGlobalBounds().left << std::endl;
 	return sf::FloatRect(upperBorder.getGlobalBounds().left, upperBorder.getGlobalBounds().top+borderSize, upperBorder.getSize().x, leftBorder.getSize().y);
 }
 
+void GameWindow::drawBorders()
+{
+    draw(upperBorder);
+	draw(lowerBorder);
+	draw(leftBorder);
+	draw(rightBorder);
+}
+
+void GameWindow::drawPlayerName(const sf::String &playerNameString)
+{
+	playerName.setString( "Player: " + playerNameString);
+	draw(playerName);
+}
+
+void GameWindow::drawGameTime(const sf::Time &gameTime)
+{
+	timeText.setString("Game time: " + generateTimeString(gameTime));	
+	draw(timeText);
+}
+
+void GameWindow::drawLifes(int numberOfLifes){
+	
+
+}
+
+sf::String GameWindow::generateTimeString(const sf::Time &gameTime)
+{
+	int minutes = 0;
+	int seconds = 0;
+	char charGameTime[6] = "\0";
+	char *ptrCharGameTime = charGameTime;	
+	
+	if( int(gameTime.asSeconds())%60 > 0)
+		minutes = int (gameTime.asSeconds()/60);
+	seconds = gameTime.asSeconds() - minutes*60;
+	sprintf(ptrCharGameTime, "%02d:%02d", minutes, seconds);
+	
+	
+	return sf::String(ptrCharGameTime);	
+}

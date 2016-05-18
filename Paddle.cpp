@@ -42,7 +42,7 @@ void Paddle::setPaddleWidth(float width)
 	paddleWidth = width;
 }
 
-int Paddle::isCollision(sf::CircleShape& ball, GameWindow& window)
+int Paddle::isCollision(sf::CircleShape& ball)
 {
 	float ballLeftX = ball.getPosition().x - ball.getRadius();
 	float ballLeftY = ball.getPosition().y;
@@ -60,10 +60,10 @@ int Paddle::isCollision(sf::CircleShape& ball, GameWindow& window)
 	float leftMiddlePaddleY = leftCircle.getPosition().y - leftCircle.getRadius();
 
 	float rightMiddlePaddleX = rightCircle.getPosition().x;
-	float rightMiddlePaddleY = rightCircle.getPosition().y - rightCircle.getRadius();
+	//float rightMiddlePaddleY = rightCircle.getPosition().y - rightCircle.getRadius();
 
 	float rightPaddleX = rightCircle.getPosition().x + rightCircle.getRadius();
-	float rightPaddleY = rightCircle.getPosition().y;
+	//float rightPaddleY = rightCircle.getPosition().y;
 
 	int offset = 20;
 	int res = 0;
@@ -73,13 +73,8 @@ int Paddle::isCollision(sf::CircleShape& ball, GameWindow& window)
 	    && ballBottomY > leftMiddlePaddleY
 	    && ballBottomY < leftPaddleY + offset
 	) {
-
 		res = checkPaddleCollisionSide(leftPaddleX, leftMiddlePaddleX, rightMiddlePaddleX, rightPaddleX, ballBottomX);
-		std::cout << "Ball bottom" << std::endl;
-		std::cout << res << std::endl;
-	}
-
-	else if
+	} else if
 	(
 	    ballLeftX > leftPaddleX
 	    && ballLeftX < rightPaddleX
@@ -87,8 +82,6 @@ int Paddle::isCollision(sf::CircleShape& ball, GameWindow& window)
 	    && ballLeftY < leftPaddleY + offset
 	) {
 		res = checkPaddleCollisionSide(leftPaddleX, leftMiddlePaddleX, rightMiddlePaddleX, rightPaddleX, ballLeftX);
-		std::cout << "Ball left" <<  std::endl;
-		std::cout << res << std::endl;
 	} else if
 	(
 	    ballRigthX > leftPaddleX
@@ -97,42 +90,40 @@ int Paddle::isCollision(sf::CircleShape& ball, GameWindow& window)
 	    && ballRigthY < leftPaddleY + offset
 	) {
 		res = checkPaddleCollisionSide(leftPaddleX, leftMiddlePaddleX, rightMiddlePaddleX, rightPaddleX, ballRigthX);
-		std::cout << "Ball right" << std::endl;
-		std::cout << res << std::endl;
 	}
 
 	//std::cout << ballRigthX << " > " << leftPaddleX << " , "<< ballLeftX << " < " << rightPaddleX << " , " << ballRigthY << " > " << leftMiddlePaddleY << " , " << ballRigthY << " < " << leftPaddleY << std::endl;
 
-	sf::CircleShape c1, c2, c3, c4, b1, b2, b3;
-
-	c1.setPosition(leftPaddleX, leftPaddleY);
-	c1.setRadius(2);
-
-	c2.setPosition(leftMiddlePaddleX, leftMiddlePaddleY);
-	c2.setRadius(2);
-
-	c3.setPosition(rightMiddlePaddleX, rightMiddlePaddleY);
-	c3.setRadius(2);
-
-	c4.setPosition(rightPaddleX, rightPaddleY);
-	c4.setRadius(2);
-
-	b1.setPosition(ballLeftX, ballLeftY);
-	b1.setRadius(2);
-
-	b2.setPosition(ballBottomX, ballBottomY);
-	b2.setRadius(2);
-
-	b3.setPosition(ballRigthX, ballRigthY);
-	b3.setRadius(2);
-
-	window.draw(c1);
-	window.draw(c2);
-	window.draw(c3);
-	window.draw(c4);
-	window.draw(b1);
-	window.draw(b2);
-	window.draw(b3);
+//	sf::CircleShape c1, c2, c3, c4, b1, b2, b3;
+//
+//	c1.setPosition(leftPaddleX, leftPaddleY);
+//	c1.setRadius(2);
+//
+//	c2.setPosition(leftMiddlePaddleX, leftMiddlePaddleY);
+//	c2.setRadius(2);
+//
+//	c3.setPosition(rightMiddlePaddleX, rightMiddlePaddleY);
+//	c3.setRadius(2);
+//
+//	c4.setPosition(rightPaddleX, rightPaddleY);
+//	c4.setRadius(2);
+//
+//	b1.setPosition(ballLeftX, ballLeftY);
+//	b1.setRadius(2);
+//
+//	b2.setPosition(ballBottomX, ballBottomY);
+//	b2.setRadius(2);
+//
+//	b3.setPosition(ballRigthX, ballRigthY);
+//	b3.setRadius(2);
+//
+//	window.draw(c1);
+//	window.draw(c2);
+//	window.draw(c3);
+//	window.draw(c4);
+//	window.draw(b1);
+//	window.draw(b2);
+//	window.draw(b3);
 
 	return res;
 

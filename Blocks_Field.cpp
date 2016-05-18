@@ -29,6 +29,8 @@ void Blocks_Field::create_matrix(const int width, float x, float y)
 	for(unsigned int r = 0; r < rows_no; ++r)
 		for(unsigned int c = 0; c < columns_no; ++c)
 			blocks[r][c].setPosition(first_position_x + tmp_b.get_size_x() * c, first_position_y + tmp_b.get_size_y() * r);
+			
+	blocks_no = rows_no * columns_no;
 }
 
 void Blocks_Field::set_blocks_state(float xc, float yc, float r)
@@ -57,4 +59,13 @@ std::vector<Block> Blocks_Field::get_dawable_blocks()
 				tmp_v.push_back(blocks[r][c]);
 				
 	return tmp_v;
+}
+
+void Blocks_Field::delete_matrix()
+{
+//	for(unsigned int r = 0; r < blocks.size(); ++r)
+//		for(unsigned int c = 0; c < blocks[r].size(); ++c)
+//			delete &blocks[r][c];
+	
+	blocks.clear();
 }
