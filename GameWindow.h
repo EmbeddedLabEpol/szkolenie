@@ -22,6 +22,9 @@ public:
 		
 	void drawGUI(const sf::Time gameTime = sf::Time().Zero, int numberOfLifes = 3, sf::String playerName = "Skuwacz");
 	void setDisplayedUserName(std::string);
+	
+	void drawPause();
+	
 	sf::FloatRect getPlayableField();
 
 private:
