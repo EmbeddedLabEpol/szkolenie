@@ -48,7 +48,7 @@ float Paddle::getPaddleWidth()
 	return paddleWidth;
 }
 
-int Paddle::isCollision(sf::CircleShape& ball)
+int Paddle::isCollision(Ball& ball)
 {
 	float ballLeftX = ball.getPosition().x - ball.getRadius();
 	float ballLeftY = ball.getPosition().y;
