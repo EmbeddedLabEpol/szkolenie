@@ -14,7 +14,7 @@ public:
 	void draw_field(sf::RenderWindow&);
 	std::vector<Block> get_dawable_blocks();
 	
-private:
+//private:
 	std::vector<std::vector<Block>> blocks;
 
 };

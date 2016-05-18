@@ -83,7 +83,8 @@ int Game::run()
 		ball.move();
 		ball.checkWallColision(window.getPlayableField());
 
-		std::vector<Block> tmp_vb = b.get_dawable_blocks();
+
+		/*std::vector<Block> tmp_vb = b.get_dawable_blocks();
 
 		for(unsigned int i = 0; i < tmp_vb.size(); ++i)
 		{
@@ -98,11 +99,23 @@ int Game::run()
 				window.draw(tmp_vb[i]);
 				
 			}
-		}
+		}*/
+
+//		std::vector<Block> tmp_vb = b.get_dawable_blocks();
+//
+//		for(unsigned int i = 0; i < tmp_vb.size(); ++i)
+//			ball.checkColision(tmp_vb[i]);
+		
+		for(unsigned int r = 0; r < b.blocks.size(); ++r)
+			for(unsigned int c = 0; c < b.blocks[r].size(); ++c)
+				if(b.blocks[r][c].state)
+					if(ball.checkColision(b.blocks[r][c]))
+						b.blocks[r][c].state = false;
+
 
 		int side = paddle.isCollision(ball);
 		ball.bouncePaddle(side);
-		//b.draw_field(window);
+		b.draw_field(window);
 
 		window.draw(ball);
 		paddle.draw(window);
