@@ -54,7 +54,7 @@ int Game::run()
 	sf::Clock paddleClock;
 	sf::Time elapsed = clock.getElapsedTime();
 
-	  int r = 15;
+	int r = 15;
 
 	float xc = 512;
 	float yc = 700;
@@ -96,6 +96,11 @@ beginning:
 				if(mousePosX > (availableField.left + paddle.getPaddleWidth()/2) && mousePosX < (availableField.left + availableField.width - paddle.getPaddleWidth()/2))
 					paddle.movePaddle(mousePosX);
 			}
+			if(event.type == sf::Event::KeyPressed) {
+				if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) ) {
+
+				}
+			}
 		}
 
 
@@ -123,37 +128,37 @@ beginning:
 					if(ball.checkColision(b.blocks[r][c])) {
 						b.blocks[r][c].state = false;
 						b.blocks_no = b.blocks_no - 1;
-						
-						if(b.blocks[r][c].up_speed){
+
+						if(b.blocks[r][c].up_speed) {
 							ball.speedUp();
 							std::cout<< "szybcej"<< std::endl;
 						}
-													
-						if(b.blocks[r][c].down_speed){
+
+						if(b.blocks[r][c].down_speed) {
 							ball.slowDown();
 							std::cout<< "wolniej"<< std::endl;
 						}
-							
-						if(b.blocks[r][c].up_size){
+
+						if(b.blocks[r][c].up_size) {
 							ball.scale(2,2); //sizeUp();
 							ball.setRadius(ball.getRadius()*2);
 							std::cout<< "wieksza"<< std::endl;
 						}
-							
-							
-							
-						if(b.blocks[r][c].down_size){
+
+
+
+						if(b.blocks[r][c].down_size) {
 							ball.scale(0.5,0.5); //sizeDown();
 							ball.setRadius(ball.getRadius()*0.5);
 							std::cout<< "mniejsza"<< std::endl;
 						}
-						
-						if(b.blocks[r][c].up_paddle_size){
+
+						if(b.blocks[r][c].up_paddle_size) {
 							paddle.changePaddleSizeUp();
 							std::cout<< "wieksza paletka"<< std::endl;
 						}
-						
-						if(b.blocks[r][c].down_paddle_size){
+
+						if(b.blocks[r][c].down_paddle_size) {
 							paddle.changePaddleSizeDown();
 							std::cout<< "mniejsza paletka"<< std::endl;
 						}
@@ -169,9 +174,8 @@ beginning:
 			paddle.setPaddleCollisionState(true);
 			paddleClock.restart();
 		}
-	
-		if(ball.dead)
-		{	
+
+		if(ball.dead) {
 			ball.setPosition(512,700);
 		}
 
