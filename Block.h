@@ -16,6 +16,11 @@ public:
 
 	//sf::RectangleShape block;
 	bool state;
+	
+	bool up_speed = false;
+	bool down_speed = false;
+	bool up_size = false;
+	bool down_size = false;
 };
 
 #endif // BLOCK_H
