@@ -4,10 +4,10 @@ Ball::Ball(double x, double y, int r): sf::CircleShape(r), speed(10.0), directio
 {	
 	this->setOrigin(this->getRadius(), this->getRadius());
 	this->setPosition(x, y);
-	this->setFillColor(sf::Color::Blue);
+	this->setFillColor(sf::Color::Green);
 	
-	//this->setOutlineThickness(5);
-	//this->setOutlineColor(sf::Color::Red);
+	this->setOutlineThickness(1);
+	this->setOutlineColor(sf::Color::Red);
 	
 	sf::Texture texture;
 	texture.loadFromFile("../ruda.png");
@@ -149,6 +149,7 @@ bool Ball::checkColision(Block &block)
 		std::cout << "colision" << std::endl;
 		this->bounce(block);
 		block.state = false;
+		std::cout<<block.state<<std::endl;
 	}
 	return b;
 }
