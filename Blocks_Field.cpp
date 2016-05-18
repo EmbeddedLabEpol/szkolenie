@@ -52,6 +52,14 @@ void Blocks_Field::create_matrix(const int width, float x, float y)
 	int random_row4 = rand() % (rows_no - 1) + 0;
 	int random_column4 = rand() % (columns_no - 1)  + 0;
 	blocks[random_row4][random_column4].down_size = true;
+	
+	int random_row5 = rand() % (rows_no - 1)  + 0;
+	int random_column5 = rand() % (columns_no - 1)  + 0;
+	blocks[random_row5][random_column5].up_paddle_size = true;
+	
+	int random_row6 = rand() % (rows_no - 1) + 0;
+	int random_column6 = rand() % (columns_no - 1)  + 0;
+	blocks[random_row6][random_column6].down_paddle_size = true;
 }
 
 void Blocks_Field::set_blocks_state(float xc, float yc, float r)

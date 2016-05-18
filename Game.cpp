@@ -147,6 +147,16 @@ beginning:
 							ball.setRadius(ball.getRadius()*0.5);
 							std::cout<< "mniejsza"<< std::endl;
 						}
+						
+						if(b.blocks[r][c].up_paddle_size){
+							paddle.changePaddleSizeUp();
+							std::cout<< "wieksza paletka"<< std::endl;
+						}
+						
+						if(b.blocks[r][c].down_paddle_size){
+							paddle.changePaddleSizeDown();
+							std::cout<< "mniejsza paletka"<< std::endl;
+						}
 					}
 
 		if(paddle.getPaddleCollisionState()) {

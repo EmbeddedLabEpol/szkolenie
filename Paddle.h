@@ -29,6 +29,8 @@ public:
 	int isCollision(sf::CircleShape&);
 	void setPaddleCollisionState(bool);
 	bool getPaddleCollisionState();
+	void changePaddleSizeUp();
+	void changePaddleSizeDown();
 	~Paddle();
 
 };

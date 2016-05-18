@@ -122,6 +122,18 @@ bool Paddle::getPaddleCollisionState()
 {
 	return paddleCollisionState;
 }
+
+void Paddle::changePaddleSizeUp()
+{
+	if(paddleWidth <= 175)
+		paddleWidth *= 1.5f;
+}
+
+void Paddle::changePaddleSizeDown()
+{
+	if(paddleWidth >= 10)
+		paddleWidth *= 0.5f;
+}
 Paddle::~Paddle()
 {
 }
