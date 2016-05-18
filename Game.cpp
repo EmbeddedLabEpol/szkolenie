@@ -17,7 +17,8 @@ Game::~Game()
 {
 }
 void Game::pause(GameWindow& window)
-{  sf::Event event;
+{
+	sf::Event event;
 	while (true) {
 		window.drawPause();
 		window.display();
@@ -62,7 +63,7 @@ int Game::run()
 
 
 	Paddle paddle(WIDTH/2, HEIGHT-50);
-
+	
 	// create the window
 	GameWindow window(WIDTH, HEIGHT, "Arcanoid - nasza wypas wersja 2.0");
 	Menu menu(WIDTH,HEIGHT);
@@ -73,7 +74,7 @@ int Game::run()
 
 	Blocks_Field b;
 
-	sf::Clock clock; // starts the clock
+	sf::Clock clock,clock_game; // starts the clock
 	sf::Clock paddleClock;
 	sf::Time elapsed = clock.getElapsedTime();
 
@@ -85,7 +86,9 @@ int Game::run()
 	Ball ball {xc, yc, r, 10.0};
 
 beginning:
-
+	int life = 3;
+	bool life_bool = true;
+	
 	b.create_matrix(width, x, y);
 	ball.setPosition(xc,yc);
 	//////////////////////////////////// MENU ///////////////////////////////////////
@@ -111,6 +114,7 @@ beginning:
 				if (event.mouseButton.button == sf::Mouse::Left) {
 					ball.setSpeed(10);
 					ball.dead = false;
+					life_bool = true;
 				}
 
 				if (event.mouseButton.button == sf::Mouse::Right) {
@@ -166,19 +170,19 @@ beginning:
 							ball.slowDown();
 							std::cout<< "wolniej"<< std::endl;
 						}
- 
-							
-						if(b.blocks[r][c].up_size){
+
+
+						if(b.blocks[r][c].up_size) {
 							//ball.scale(2,2); //sizeUp();
 							ball.setRadius(ball.getRadius()*2);
 							std::cout<< "wieksza"<< std::endl;
 						}
-							
-							
-							
-						if(b.blocks[r][c].down_size){
+
+
+
+						if(b.blocks[r][c].down_size) {
 							//ball.scale(0.5,0.5); //sizeDown();
- 
+
 							ball.setRadius(ball.getRadius()*0.5);
 							std::cout<< "mniejsza"<< std::endl;
 						}
@@ -204,24 +208,27 @@ beginning:
 			paddle.setPaddleCollisionState(true);
 			paddleClock.restart();
 		}
- 
-	
-		if(ball.dead)
-		{	
+
+
+		if(ball.dead  ) {
+			if (life_bool) {
+				--life;
+				life_bool = false;
+			}
 			ball.setPosition(paddle.getPaddlePosition().x, paddle.getPaddlePosition().y-ball.getRadius());
- 
+
 		}
 
-		if (b.blocks_no == 0) {
+		if (b.blocks_no == 0 || life == 0) {
 			b.delete_matrix();
 			goto beginning;
 		}
-
+		 
 		b.draw_field(window);
 
 		window.draw(ball);
 		paddle.draw(window);
-		window.drawGUI(sf::seconds(90),3,menu.get_user_name());
+		window.drawGUI(clock_game.getElapsedTime(),life,menu.get_user_name());
 
 		window.display();
 
