@@ -1,4 +1,7 @@
 #include "Blocks_Field.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h> 
 
 Blocks_Field::Blocks_Field()
 {
@@ -31,6 +34,24 @@ void Blocks_Field::create_matrix(const int width, float x, float y)
 			blocks[r][c].setPosition(first_position_x + tmp_b.get_size_x() * c, first_position_y + tmp_b.get_size_y() * r);
 			
 	blocks_no = rows_no * columns_no;
+	
+	srand (time(NULL));
+	
+	int random_row1 = rand() % (rows_no - 1)  + 0;
+	int random_column1 = rand() % (columns_no - 1)  + 0;
+	blocks[random_row1][random_column1].up_speed = true;
+	
+	int random_row2 = rand() % (rows_no - 1) + 0;
+	int random_column2 = rand() % (columns_no - 1)  + 0;
+	blocks[random_row2][random_column2].down_speed = true;
+	
+	int random_row3 = rand() % (rows_no - 1)  + 0;
+	int random_column3 = rand() % (columns_no - 1)  + 0;
+	blocks[random_row3][random_column3].up_size = true;
+	
+	int random_row4 = rand() % (rows_no - 1) + 0;
+	int random_column4 = rand() % (columns_no - 1)  + 0;
+	blocks[random_row4][random_column4].down_size = true;
 }
 
 void Blocks_Field::set_blocks_state(float xc, float yc, float r)
